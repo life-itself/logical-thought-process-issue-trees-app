@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue Tree + Cumulative Annotation — Demo</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f8f7f4;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  header {
+    background: #1a1a1a;
+    color: #f8f7f4;
+    padding: 2rem 2.5rem;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  header p {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    color: #999;
+  }
+
+  /* Step nav */
+  nav {
+    display: flex;
+    border-bottom: 1px solid #e0ddd8;
+    background: #fff;
+    padding: 0 2.5rem;
+    gap: 0;
+  }
+
+  nav button {
+    background: none;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #888;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  nav button:hover { color: #1a1a1a; }
+
+  nav button.active {
+    color: #1a1a1a;
+    border-bottom-color: #1a1a1a;
+  }
+
+  /* Main layout */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+  }
+
+  .step { display: none; }
+  .step.active { display: block; }
+
+  .step-header {
+    margin-bottom: 2rem;
+  }
+
+  .step-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .step-header p {
+    margin-top: 0.5rem;
+    color: #555;
+    max-width: 600px;
+  }
+
+  /* Cards */
+  .card {
+    background: #fff;
+    border: 1px solid #e0ddd8;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Seed question */
+  .seed-question {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    padding: 2rem;
+    background: #fff;
+    border: 2px solid #1a1a1a;
+    border-radius: 8px;
+    text-align: center;
+    margin: 1rem 0 2rem;
+  }
+
+  .input-note {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .input-note .icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* Tree */
+  .tree {
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    background: #fafaf8;
+    border: 1px solid #e0ddd8;
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+  }
+
+  .tree-root {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+  }
+
+  .tree-branch { color: #888; }
+  .tree-node { color: #1a1a1a; }
+  .tree-leaf { color: #555; padding-left: 1rem; }
+
+  /* Source doc */
+  .source-doc {
+    background: #fffef9;
+    border: 1px solid #e8e4d8;
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .source-meta {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e8e4d8;
+  }
+
+  .source-meta strong { color: #444; }
+
+  .source-body {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.7;
+  }
+
+  .highlight {
+    background: #fff3b0;
+    border-radius: 2px;
+    padding: 0 2px;
+  }
+
+  .highlight.green { background: #c8f7c5; }
+  .highlight.blue { background: #c5e8f7; }
+
+  /* Annotated tree */
+  .annotated-tree {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .tree-node-card {
+    background: #fff;
+    border: 1px solid #e0ddd8;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .tree-node-card .node-question {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: #f8f7f4;
+    border-bottom: 1px solid #e0ddd8;
+  }
+
+  .node-question.root {
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  .annotations-list {
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .annotation {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .annotation-badge {
+    flex-shrink: 0;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.1rem;
+  }
+
+  .badge-supports { background: #c8f7c5; color: #1a6b17; }
+  .badge-complicates { background: #fff3b0; color: #7a5c00; }
+  .badge-limits { background: #e8e4f8; color: #4a3b8c; }
+
+  .annotation-text { color: #333; }
+  .annotation-source {
+    font-size: 0.75rem;
+    color: #aaa;
+    margin-top: 0.2rem;
+  }
+
+  /* Navigation buttons */
+  .step-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0ddd8;
+  }
+
+  .btn {
+    padding: 0.6rem 1.4rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #1a1a1a;
+    transition: background 0.1s;
+  }
+
+  .btn:hover { background: #f0efec; }
+
+  .btn.primary {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+  }
+
+  .btn.primary:hover { background: #333; }
+  .btn:disabled { opacity: 0.3; cursor: default; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+    nav button { padding: 0.75rem 0.75rem; font-size: 0.78rem; }
+    .seed-question { font-size: 1.2rem; }
+  }
+
+  .arrow-down {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ccc;
+    margin: 0.5rem 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Issue Tree + Cumulative Annotation</h1>
+  <p>A walkthrough of the structured sense-making process</p>
+</header>
+
+<nav>
+  <button class="active" onclick="goTo(0)">1. Question</button>
+  <button onclick="goTo(1)">2. Issue Tree</button>
+  <button onclick="goTo(2)">3. Source Doc</button>
+  <button onclick="goTo(3)">4. Annotated Tree</button>
+</nav>
+
+<main>
+
+  <!-- STEP 1: Seed Question -->
+  <section class="step active" id="step-0">
+    <div class="step-header">
+      <div class="step-label">Step 1</div>
+      <h2>Start with a question</h2>
+      <p>Everything begins with a question or claim we want to reason about carefully. We use a question because it's more honest — we don't know the answer yet.</p>
+    </div>
+
+    <div class="seed-question">
+      Does remote work increase productivity?
+    </div>
+
+    <div class="card">
+      <div class="card-label">Why this question?</div>
+      <div class="input-note">
+        <div class="icon">💬</div>
+        <div>Genuinely contested. Employers and employees disagree. Research exists but is often cited selectively. A good issue tree makes the structure of the debate explicit — so we can see exactly <em>which</em> sub-questions are actually in dispute.</div>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn" disabled>← Previous</button>
+      <button class="btn primary" onclick="goTo(1)">Next: Issue Tree →</button>
+    </div>
+  </section>
+
+  <!-- STEP 2: Issue Tree -->
+  <section class="step" id="step-1">
+    <div class="step-header">
+      <div class="step-label">Step 2</div>
+      <h2>Decompose into an issue tree</h2>
+      <p>AI breaks the root question into sub-questions. Each branch isolates a distinct dimension of the debate. The answer to the root question depends on answers to these sub-questions.</p>
+    </div>
+
+    <div class="tree">
+      <div class="tree-root">Does remote work increase productivity?</div>
+      <div>
+        <span class="tree-branch">├── </span><span class="tree-node">For whom?</span>
+        <div><span class="tree-branch">│   ├── </span><span class="tree-leaf">Individual contributors vs managers?</span></div>
+        <div><span class="tree-branch">│   └── </span><span class="tree-leaf">Deep work roles vs collaborative roles?</span></div>
+      </div>
+      <div>
+        <span class="tree-branch">├── </span><span class="tree-node">For what tasks?</span>
+        <div><span class="tree-branch">│   ├── </span><span class="tree-leaf">Focused / solo tasks?</span></div>
+        <div><span class="tree-branch">│   └── </span><span class="tree-leaf">Creative / collaborative tasks?</span></div>
+      </div>
+      <div>
+        <span class="tree-branch">├── </span><span class="tree-node">Over what time horizon?</span>
+        <div><span class="tree-branch">│   ├── </span><span class="tree-leaf">Short-term (first months)?</span></div>
+        <div><span class="tree-branch">│   └── </span><span class="tree-leaf">Long-term (1+ years)?</span></div>
+      </div>
+      <div>
+        <span class="tree-branch">└── </span><span class="tree-node">Under what conditions?</span>
+        <div><span class="tree-branch">&nbsp;&nbsp;&nbsp; ├── </span><span class="tree-leaf">Home setup quality?</span></div>
+        <div><span class="tree-branch">&nbsp;&nbsp;&nbsp; └── </span><span class="tree-leaf">Managerial practices?</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 1rem;">
+      <div class="card-label">What this gives us</div>
+      The tree makes clear that "remote work is/isn't productive" is not a single claim. The real disagreements are about <strong>which workers, doing which tasks, over what timeframe.</strong> Most arguments talk past each other because they're answering different sub-questions.
+    </div>
+
+    <div class="step-nav">
+      <button class="btn" onclick="goTo(0)">← Previous</button>
+      <button class="btn primary" onclick="goTo(2)">Next: Source Doc →</button>
+    </div>
+  </section>
+
+  <!-- STEP 3: Source Document -->
+  <section class="step" id="step-2">
+    <div class="step-header">
+      <div class="step-label">Step 3</div>
+      <h2>Bring in a source document</h2>
+      <p>Someone has written something relevant — a paper, blog post, news article. We feed it to the AI, which reads it against the tree and identifies which parts speak to which nodes.</p>
+    </div>
+
+    <div class="source-doc">
+      <div class="source-meta">
+        <strong>Bloom, N., Liang, J., Roberts, J., &amp; Ying, Z. J. (2015).</strong><br>
+        "Does Working from Home Work? Evidence from a Chinese Experiment." <em>Quarterly Journal of Economics.</em><br>
+        Stanford Graduate School of Business — <a href="#" style="color:#888">working paper</a>
+      </div>
+      <div class="source-body">
+        <p>We report the results of a randomized control trial of working from home among call centre employees at Ctrip, a NASDAQ-listed Chinese travel agency. <span class="highlight green">We find a 13% performance increase among work-from-home employees</span>, with about two thirds of this due to fewer breaks and sick days, and one third due to more calls per minute attributed to the quieter working environment.</p>
+
+        <p style="margin-top: 1rem;">A key finding is that <span class="highlight">the performance improvement is concentrated in solo tasks — call handling — rather than team-based activities.</span> Employees working from home had significantly lower rates of promotion, suggesting potential long-term career costs.</p>
+
+        <p style="margin-top: 1rem;"><span class="highlight blue">At the end of the experiment, employees who had been assigned to work from home were given the choice to return to the office. Roughly half chose to return, and among this group, the productivity gain largely reversed</span>, suggesting individual preferences for working environment are highly heterogeneous and matter for productivity outcomes.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 1rem;">
+      <div class="card-label">What happens next</div>
+      The AI reads this document against the issue tree. It identifies three distinct passages that each speak to different nodes. It proposes annotations — the user reviews and confirms.
+    </div>
+
+    <div class="step-nav">
+      <button class="btn" onclick="goTo(1)">← Previous</button>
+      <button class="btn primary" onclick="goTo(3)">Next: Annotated Tree →</button>
+    </div>
+  </section>
+
+  <!-- STEP 4: Annotated Tree -->
+  <section class="step" id="step-3">
+    <div class="step-header">
+      <div class="step-label">Step 4</div>
+      <h2>Annotated tree</h2>
+      <p>The tree now carries evidence. Each annotation is a fragment from the source doc, mapped to the node it speaks to, tagged with whether it supports, complicates, or limits the claim. More documents can be added — the tree accumulates.</p>
+    </div>
+
+    <div class="annotated-tree">
+
+      <div class="tree-node-card">
+        <div class="node-question root">Does remote work increase productivity?</div>
+        <div class="annotations-list">
+          <div class="annotation">
+            <span class="annotation-badge badge-supports">Supports</span>
+            <div>
+              <div class="annotation-text">"We find a 13% performance increase among work-from-home employees."</div>
+              <div class="annotation-source">Bloom et al. (2015), QJE — call centre RCT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-node-card">
+        <div class="node-question">For what tasks? → Focused / solo tasks?</div>
+        <div class="annotations-list">
+          <div class="annotation">
+            <span class="annotation-badge badge-supports">Supports</span>
+            <div>
+              <div class="annotation-text">"Performance improvement concentrated in solo tasks — call handling — rather than team-based activities."</div>
+              <div class="annotation-source">Bloom et al. (2015), QJE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-node-card">
+        <div class="node-question">Over what time horizon? → Long-term (1+ years)?</div>
+        <div class="annotations-list">
+          <div class="annotation">
+            <span class="annotation-badge badge-complicates">Complicates</span>
+            <div>
+              <div class="annotation-text">"Employees working from home had significantly lower rates of promotion, suggesting potential long-term career costs."</div>
+              <div class="annotation-source">Bloom et al. (2015), QJE</div>
+            </div>
+          </div>
+          <div class="annotation">
+            <span class="annotation-badge badge-complicates">Complicates</span>
+            <div>
+              <div class="annotation-text">"Among those who chose to return to office, the productivity gain largely reversed."</div>
+              <div class="annotation-source">Bloom et al. (2015), QJE — end-of-trial choice experiment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-node-card">
+        <div class="node-question">For whom? → Individual contributors vs managers?</div>
+        <div class="annotations-list">
+          <div class="annotation">
+            <span class="annotation-badge badge-limits">Limits scope</span>
+            <div>
+              <div class="annotation-text">Study covers call centre employees only. Generalisability to knowledge workers, managers, or creative roles is unclear.</div>
+              <div class="annotation-source">Bloom et al. (2015) — study design note</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top: 1.5rem; border-color: #c8f7c5; background: #f6fff5;">
+      <div class="card-label">Key point</div>
+      This tree can now receive more documents. Each new paper or article gets mapped onto the same structure. Over time the tree becomes a structured summary of everything known — not a flat list of links, but an <strong>organised body of evidence</strong> where every piece is located relative to a specific sub-question.
+    </div>
+
+    <div class="step-nav">
+      <button class="btn" onclick="goTo(2)">← Previous</button>
+      <button class="btn" onclick="goTo(0)">Start over</button>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  const steps = document.querySelectorAll('.step');
+  const navBtns = document.querySelectorAll('nav button');
+
+  function goTo(n) {
+    steps.forEach((s, i) => s.classList.toggle('active', i === n));
+    navBtns.forEach((b, i) => b.classList.toggle('active', i === n));
+  }
+</script>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-The Process: Claim Tree + Cumulative Annotation
+# Claim Tree + Cumulative Annotation Process
 
 Three core objects:
 
@@ -31,6 +31,7 @@ Need something: (a) simple enough to grasp fast, (b) substantive enough to be in
 
 Candidates:
 
+```
 ┌────────────────────────────────────────────┬─────────────────────────────────────────────────────┐
 │                   Claim                    │                      Why good                       │
 ├────────────────────────────────────────────┼─────────────────────────────────────────────────────┤
@@ -42,6 +43,7 @@ Candidates:
 ├────────────────────────────────────────────┼─────────────────────────────────────────────────────┤
 │ "Reading fiction increases empathy"        │ Surprising, decomposable, studies exist             │
 └────────────────────────────────────────────┴─────────────────────────────────────────────────────┘
+```
 
 Suggested: "Does remote work increase productivity?" — relatable to any knowledge worker, genuinely contested, decomposable into clear sub-questions (for whom? what tasks? short vs long
 term?), and real material (Stanford studies, company blog posts, HBR articles) exists to annotate with.

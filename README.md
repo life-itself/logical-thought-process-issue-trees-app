@@ -1,12 +1,9 @@
 ---
-description: Collaboration with David Joseph to build a Logical Thinking Process / Issue Tree app for structured argument decomposition and cumulative sense-making.
-created: 2026-06-20
+created: 2026-06-06
 status: in-progress
 ---
 
 # Logial Thinking Process (LTP) / Issue Tree App and Exploration
-
-## What this is about
 
 Collaboration of Rufus Pollock with David Joseph to build tooling for structured thinking — specifically a Logical Thinking Process (LTP) / Issue Tree app. Both David and Rufus share a long-standing frustration with how poorly structured public argument is: claims are vague, debate doesn't accumulate, evidence doesn't clearly map to specific sub-points.
 

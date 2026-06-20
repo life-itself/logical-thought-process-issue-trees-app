@@ -49,23 +49,18 @@ term?), and real material (Stanford studies, company blog posts, HBR articles) e
 
 ## Visualization Shape
 
-For a walkthrough site/slides, suggest 4 panels, left-to-right or top-down progression:
+Single scrollable page. Sections reveal as user scrolls down.
 
-Panel 1: SEED
-"Remote work increases productivity"
-[raw claim or input doc excerpt]
+**Full vision (animated):**
+- Section 1: Seed question, large and centered
+- Section 2: Question *animates* / reconfigures into tree (nodes appear one by one)
+- Section 3: Two-column layout begins — tree locks to LHS (sticky), source doc slides in on RHS
+- Section 4: Still two-column — highlighted passages in doc, annotation cards appear on tree nodes as user scrolls
 
-Panel 2: TREE
-Question/claim tree with 3-4 nodes expanded
+Key UX idea: once the tree is built, it stays visible on the left for all subsequent sections. The right side is where new material arrives and gets processed against the tree. This mirrors the mental model: tree = stable scaffold, right side = incoming world.
 
-Panel 3: SOURCE DOC
-Blog post or paper excerpt highlighted
-
-Panel 4: ANNOTATED TREE
-Same tree, but nodes now have callout cards
-attached — quote + link to source
-
-Each panel reveals progressively. Slides or a simple scrollytelling web page would both work.
+**Simpler fallback (implemented):**
+Same layout but without the question-to-tree animation. Scroll-triggered fade-ins for tree nodes, doc, and annotations. Sticky tree on LHS during doc + annotation sections.
 
 ## Toy Example: "Does remote work increase productivity?"
 

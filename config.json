@@ -1,0 +1,15 @@
+{
+  "title": "Issue Trees & Logical Thinking Process",
+  "theme": "lessflowery",
+  "favicon": "🌳",
+  "nav": {
+    "title": "Issue Trees & Logical Thinking Process"
+  },
+  "social": [
+    {
+      "label": "github",
+      "href": "https://github.com/life-itself/logical-thought-process-issue-trees-app"
+    }
+  ],
+  "showEditLink": true
+}

@@ -9,6 +9,12 @@ Collaboration of Rufus Pollock with David Joseph to build tooling for structured
 
 **Core shared vision:** A tool where you take a top-level claim, recursively decompose it into sub-claims, and build a directed graph (DAG) of claims + evidence. Enables "cathedral building" where discourse actually accumulates rather than being scattered across forum posts.
 
+<div class="demo-cta">
+  <a href="claim-tree-annotation-demo/index.html" class="btn-primary btn-primary-lg">
+    Explore the claim tree annotation demo
+  </a>
+</div>
+
 David's angle: his "Abductio" process for proposition decomposition — takes any claim, breaks into subclaims until confidence threshold is met. Built into his Promise Protocol framework.
 
 Rufus's angle: issue trees / SCQH / Minto pyramids — wanted an app for this for 10+ years. Previously almost built one 3–4 years ago.
@@ -48,9 +54,9 @@ Rufus's angle: issue trees / SCQH / Minto pyramids — wanted an app for this fo
 - [ ] Invite David as collaborator
 
 ### 4. Setup Discord bot for Second Renaissance channel
-- [ ] Set up bot to monitor the LTP collaboration Discord sub-channel
+- [x] Set up bot to monitor the LTP collaboration Discord sub-channel **✅2026-06-23 - setup done, not doing anything yet**
 - [ ] Configure summaries / updates to feed into workplan
 
 ### 5. Sketch simple website demo (4 steps)
-- [ ] Rufus to produce sketch of demo site showing the four-step flow:
+- [x] Rufus to produce sketch of demo site showing the four-step flow: **[claim tree annotation demo](claim-tree-annotation-demo/index.html)**
   1. Material (input) → 2. Tree (claim decomposition) → 3. Related doc → 4. Annotation

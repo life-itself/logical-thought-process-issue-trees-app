@@ -450,11 +450,11 @@ class Component extends DCLogic {
       let html = '';
       pairs.forEach(p => {
         const node = annoTree.querySelector('[data-node="' + p.nodeId + '"]');
-        const m = node && node.querySelector('[data-marker]');
+        const l = node && node.querySelector('[data-label]');
         const s = docEl.querySelector('[data-src="' + p.srcId + '"]');
-        if (!m || !s) return;
-        const mr = m.getBoundingClientRect(), sr = s.getBoundingClientRect();
-        const x1 = mr.left + mr.width / 2 - wr.left, y1 = mr.top + mr.height / 2 - wr.top;
+        if (!l || !s) return;
+        const lr = l.getBoundingClientRect(), sr = s.getBoundingClientRect();
+        const x1 = lr.right - wr.left, y1 = lr.top + lr.height / 2 - wr.top;
         const x2 = sr.left - wr.left, y2 = sr.top + sr.height / 2 - wr.top;
         const cx = (x1 + x2) / 2;
         const col = stanceOn ? colorFor[p.key] : colorFor.n;

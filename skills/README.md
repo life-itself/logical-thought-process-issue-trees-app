@@ -7,7 +7,7 @@ AI skills for the LTP / Issue Tree app. Kept here (top-level, not inside `.claud
 | Skill | Purpose | Status |
 |-------|---------|--------|
 | `tree-gen/` | Input claim/question → claim tree (Stream 1a) | v0.1 — SKILL.md + canonical schema + gold fixture |
-| `annotation-mapping/` | Source doc + tree → fragments mapped to nodes with relation labels (Stream 1b) | not started |
+| `annotation-mapping/` | Source doc + tree → fragments mapped to nodes with relation labels (Stream 1b) | v0.1 — SKILL.md + gold source doc + gold annotations |
 
 The canonical **tree JSON schema** is defined in `tree-gen/SKILL.md`; `tree-gen/gold/remote-work.tree.json` is the gold fixture (extracted from `../claim-tree-annotation.md`) that also seeds 1b and 1c.
 

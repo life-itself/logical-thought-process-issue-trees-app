@@ -12,7 +12,7 @@ a.btn-primary {
   align-items: center;
   gap: 0.75rem;
   background-color: #ad2831;
-  color: #ffffff;
+  color: #ffffff !important;
   padding: 0.35rem 0.45rem 0.35rem 1rem;
   border-radius: 9999px;
   font-size: 0.9rem;
@@ -25,7 +25,7 @@ a.btn-primary {
 .btn-primary:hover,
 a.btn-primary:hover {
   background-color: #8a2028;
-  color: #ffffff;
+  color: #ffffff !important;
   text-decoration: none;
 }
 

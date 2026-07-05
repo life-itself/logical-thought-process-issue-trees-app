@@ -19,6 +19,11 @@ Logical Thinking Process (LTP) / Issue Tree app — a tool to decompose a top-le
 
 ## Conventions
 
-- **Skills** live in top-level `skills/<name>/` so they're usable outside Claude Code (e.g. Codex). Symlink into `.claude/skills/` when Claude Code needs to discover them.
+- **Skills** live in top-level `skills/<name>/` so they're usable outside Claude Code (e.g. Codex). `.claude/` is gitignored (local-only), so to let Claude Code discover them, wire the symlinks locally:
+  ```sh
+  mkdir -p .claude/skills
+  ln -s ../../skills/tree-gen .claude/skills/tree-gen
+  ln -s ../../skills/annotation-mapping .claude/skills/annotation-mapping
+  ```
 - **Toy example first.** Validate any AI skill against the gold data in `claim-tree-annotation.md` before touching real applications (e.g. Second Renaissance).
 - Keep `MOTIVATION.md` (why + SCQH) and `PLAN.md` (plan of work) current; both are referenced from `README.md`.

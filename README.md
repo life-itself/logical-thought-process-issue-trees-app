@@ -15,6 +15,8 @@ Collaboration of Rufus Pollock with David Joseph to build tooling for structured
   </a>
 </div>
 
+**Key docs:** [MOTIVATION.md](MOTIVATION.md) — why this matters + problem framing (SCQH) · [PLAN.md](PLAN.md) — plan of work, streams, next actions · [AGENTS.md](AGENTS.md) — guide for AI agents.
+
 David's angle: his "Abductio" process for proposition decomposition — takes any claim, breaks into subclaims until confidence threshold is met. Built into his Promise Protocol framework.
 
 Rufus's angle: issue trees / SCQH / Minto pyramids — wanted an app for this for 10+ years. Previously almost built one 3–4 years ago.

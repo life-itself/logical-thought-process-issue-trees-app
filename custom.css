@@ -26,7 +26,7 @@ a.btn-primary {
 a.btn-primary:hover {
   background-color: #8a2028;
   color: #ffffff !important;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .btn-primary::after {

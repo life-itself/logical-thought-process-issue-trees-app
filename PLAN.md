@@ -20,6 +20,10 @@ Stream 3 (2R experiment) ── DEFERRED until Stream 1 toy works
 Stream 4 (infra polish)  ── DROPPED this round
 ```
 
+## Follow-up plans
+
+- **Discord MCP agent access** — planned in [docs/plans/2026-07-06-discord-mcp-agent-access.md](docs/plans/2026-07-06-discord-mcp-agent-access.md). Goal: use the existing Discord bot with an off-the-shelf MCP server so Claude/Codex can read Discord messages without building a custom integration.
+
 **Key unlock:** [claim-tree-annotation.md](claim-tree-annotation.md) already contains a **gold-standard toy case** — a hand-authored tree for "Does remote work increase productivity?", a source doc (Bloom 2015 Ctrip study), and 3 target annotations mapped to nodes. This is the test fixture for Stream 1. No new data needed to start.
 
 ## Stream 1 — Product / prototype

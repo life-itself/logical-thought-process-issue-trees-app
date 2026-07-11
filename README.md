@@ -5,9 +5,9 @@ status: in-progress
 
 # Logial Thinking Process (LTP) / Issue Tree App and Exploration
 
-Collaboration of Rufus Pollock with David Joseph to build tooling for structured thinking — specifically a Logical Thinking Process (LTP) / Issue Tree app. Both David and Rufus share a long-standing frustration with how poorly structured public argument is: claims are vague, debate doesn't accumulate, evidence doesn't clearly map to specific sub-points.
+Collaboration of Rufus Pollock with David Joseph to build tooling for structured thinking — specifically a Logical Thinking Process (LTP) / Issue Tree app. Both David and Rufus share a long-standing desire to improve public discourse: making claims and their logical structure clearer (claim-trees), allowing debate to accumulate, mapping evidence clearly to specific sub-claims.
 
-**Core shared vision:** A tool where you take a top-level claim, recursively decompose it into sub-claims, and build a directed graph (DAG) of claims + evidence. Enables "cathedral building" where discourse actually accumulates rather than being scattered across forum posts.
+**Core shared vision:** Patterns and tooling where you take a top-level claim, recursively decompose it into sub-claims, and build a directed graph (DAG) of claims + evidence. Enables "cathedral building" where discourse actually accumulates rather than being scattered across forum posts.
 
 <div class="demo-cta">
   <a href="claim-tree-annotation-demo/index.html" class="btn-primary btn-primary-lg">

@@ -11,7 +11,7 @@ This project is not primarily a goal-setting, project-management, or generic dia
 3. map source passages to the relevant nodes as supporting, challenging, or qualifying evidence; and
 4. keep that tree as the stable scaffold as more material arrives.
 
-The resulting promise is **cumulative public reasoning**: instead of arguments dissolving into disconnected posts and documents, a shared logical structure and its evidence can improve over time. In short: *build claim trees, map evidence, grow shared understanding.*
+The resulting promise is **cumulative public reasoning**: instead of arguments dissolving into disconnected posts and documents, a shared logical structure and its evidence can improve over time. The trees serve two related ends: shared understanding of a thesis, and shared alignment towards a goal. In short: *build claim trees, map evidence, grow shared understanding and alignment.*
 
 This is inspired by Logical Thinking Process (LTP) and issue-tree practice, but it is not a narrow implementation of one LTP instrument. The public brand should describe the job the product actually does, rather than require visitors to know the LTP vocabulary.
 
@@ -35,7 +35,7 @@ Use **ClaimTrees** as the single name for the product, website, and brand.
 
 - **Brand/site/product:** ClaimTrees
 - **Core object:** a claim tree
-- **Suggested line:** “Build claim trees. Map evidence. Grow shared understanding.”
+- **Suggested line:** “Build claim trees. Map evidence. Grow shared understanding and alignment.”
 - **Primary domain:** `claimtrees.com`
 - **Defensive domain:** `claimtrees.org`, redirected to the primary site
 
@@ -61,7 +61,7 @@ At the time of this memo, direct registry RDAP lookups returned “not found” 
 
 The LTP connection is the best argument for it. A Goal Tree is a genuine LTP tool, and the name has a clear internal logic: the tree lays out the necessary conditions for an overarching goal.
 
-For a public product, however, the prevailing meaning is materially different. “Goal tree” is used by goal-setting, performance-management, and KPI products for decomposing objectives and tracking progress. There are also active adjacent products using **GoalTree** for personal goal/task management. A visitor arriving at `goaltrees.org` or hearing the name would reasonably expect planning software, not an environment for evaluating contested propositions and attaching evidence.
+For a public product, however, the prevailing meaning is materially different. “Goal tree” is used by goal-setting, performance-management, and KPI products for decomposing objectives and tracking progress. There are also active adjacent products using **GoalTree** for personal goal/task management. The alignment dimension makes this association more relevant, but it is still only half the promise: a visitor arriving at `goaltrees.org` or hearing the name would reasonably expect planning software, not an environment for evaluating contested propositions, attaching evidence, and then aligning around a warranted conclusion or goal.
 
 This is not just a search-engine concern. It is a product-positioning concern: the name would repeatedly require explanation exactly where the product should be immediately legible.
 

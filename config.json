@@ -3,8 +3,30 @@
   "theme": "lessflowery",
   "favicon": "🌳",
   "nav": {
-    "title": "Issue Trees & Logical Thinking Process"
+    "title": "Issue Trees & Logical Thinking Process",
+    "links": [
+      {
+        "name": "Goal Aligner",
+        "href": "/alignment/index.html"
+      },
+      {
+        "name": "Story",
+        "href": "/story/index.html"
+      },
+      {
+        "name": "Blog",
+        "href": "/blog/how-we-can-argue-better-with-claim-trees"
+      }
+    ]
   },
+  "contentExclude": [
+    "/alignment/export",
+    "/alignment/extracted",
+    "/alignment/uploads"
+  ],
+  "contentHide": [
+    "/story/_ds"
+  ],
   "social": [
     {
       "label": "github",

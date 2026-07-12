@@ -10,6 +10,12 @@ Collaboration of Rufus Pollock with David Joseph to build tooling for structured
 **Core shared vision:** Patterns and tooling where you take a top-level claim, recursively decompose it into sub-claims, and build a directed graph (DAG) of claims + evidence. Enables "cathedral building" where discourse actually accumulates rather than being scattered across forum posts.
 
 <div class="demo-cta">
+  <a href="alignment/index.html" class="btn-primary btn-primary-lg">
+    Try Goal Aligner
+  </a>
+  <a href="story/index.html" class="btn-primary btn-primary-lg">
+    Read “What Counts”
+  </a>
   <a href="claim-tree-annotation-demo/index.html" class="btn-primary btn-primary-lg">
     Explore the claim tree annotation demo
   </a>

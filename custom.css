@@ -1,6 +1,8 @@
 /* Button styles adapted from secondrenaissance.net/custom.css */
 .demo-cta {
   display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
   margin: 2rem 0;

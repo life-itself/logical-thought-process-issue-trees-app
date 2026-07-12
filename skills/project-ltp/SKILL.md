@@ -1,0 +1,152 @@
+---
+name: project-ltp
+description: >
+  Analyze software projects, repositories, codebases, TODO lists, roadmaps,
+  implementation plans, issue exports, and project documentation using the
+  Logical Thinking Processes of the Theory of Constraints. Use this skill
+  whenever the user wants an evidence-backed Goal Tree, Current Reality Tree,
+  Evaporating Cloud, Future Reality Tree, Prerequisite Tree, Transition Tree,
+  system-constraint diagnosis, causal analysis, plan/code reconciliation, or
+  a recommendation for what to work on next.
+---
+
+# Project LTP
+
+Reconstruct the logic implicit in a project and maintain one evidence-backed
+causal model. Render the Goal Tree, Current Reality Tree, Evaporating Clouds,
+Future Reality Tree, Prerequisite Tree, and Transition Tree as views of that
+shared model rather than as unrelated documents.
+
+## Required operating principles
+
+1. Classify every material statement as `observed`, `inferred`, `provisional`,
+   `confirmed`, or `disputed`.
+2. Attach evidence, source paths, line ranges when available, reasoning, and
+   confidence to observed and inferred entities.
+3. Never present inferred business intent as fact.
+4. Express important causal links as:
+   `If [cause], then [effect], because [assumption].`
+5. Reuse stable entity identifiers across all trees.
+6. Maintain the machine-readable model in `ltp-model.yaml`.
+7. Continue with a clearly marked provisional goal when evidence is incomplete.
+8. Never claim repository coverage that was not actually achieved.
+
+Read `references/principles-and-model.md` before building or revising the
+causal model.
+
+## Choose the analysis mode
+
+### Forward mode
+
+Use when the primary input is a codebase, system, or collection of project
+artifacts.
+
+Build in this order:
+
+1. Evidence map
+2. Goal Tree
+3. Current Reality Tree
+4. Evaporating Clouds
+5. Future Reality Tree
+6. Prerequisite Tree
+7. Transition Tree
+8. Next-action recommendation
+
+### Reverse mode
+
+Use when the primary input is a TODO list, roadmap, implementation plan, or
+task set. Treat each task as a candidate Transition Tree action, infer the
+logic it is supposed to serve, and reject or flag tasks that do not trace to
+the goal.
+
+### Reconciliation mode
+
+Use when both implementation evidence and a plan are available. Compare what
+the code does, what the plan assumes, what the goal requires, and what work is
+missing or irrelevant.
+
+Read `references/analysis-workflow.md` for the full examination and
+reconciliation procedure.
+
+## Repository workflow
+
+### 1. Inventory
+
+Enumerate files and classify them as source, tests, configuration,
+infrastructure, documentation, schemas, UI text, CI/CD, monitoring, plans,
+generated files, vendor dependencies, binaries, or unknown.
+
+### 2. Examine behavior
+
+Identify actors, inputs, outputs, workflows, state changes, integrations,
+failure paths, and acceptance criteria. Prefer evidence in this order:
+
+1. Executable behavior and tests
+2. Configuration and schemas
+3. Public interfaces and contracts
+4. Architecture decisions
+5. Operational documentation
+6. Issues and plans
+7. README claims
+8. Comments and TODOs
+9. Names and directory structure
+
+### 3. Find intent and pain signals
+
+Look for product claims, architectural intent, incomplete work, repeated
+failures, workarounds, contradictions, reliability risks, security risks,
+deprecations, and missing implementations.
+
+### 4. Synthesize one causal model
+
+Create entities, evidence items, assumptions, links, open questions,
+contradictions, and coverage gaps in `ltp-model.yaml`.
+
+### 5. Render the trees
+
+Read `references/tree-construction.md` and apply the construction rules for
+each tree. Reuse entity IDs whenever the same condition appears in multiple
+views.
+
+### 6. Determine what to work on next
+
+Identify the current constraint, locate the earliest blocked objective, prefer
+high-leverage actions over visible activity, and choose one primary action.
+State its expected immediate effect and the uncertainty most likely to change
+the recommendation.
+
+## Required files
+
+When the user asks for a full analysis, create an `ltp/` directory with the
+canonical deliverables below:
+
+- `00-coverage-and-evidence.md`
+- `01-project-model.md`
+- `02-goal-tree.md`
+- `03-current-reality-tree.md`
+- `04-evaporating-clouds.md`
+- `05-future-reality-tree.md`, including negative-branch analysis
+- `06-prerequisite-tree.md`
+- `07-transition-tree.md`
+- `08-next-action.md`
+- `09-assumptions-and-questions.md`
+- `ltp-model.yaml`
+
+Use Mermaid diagrams when useful, but ensure every diagram also has a readable
+text representation.
+
+Read `references/validation-and-deliverables.md` for validation checks,
+incremental-update behavior, output requirements, and the final response
+format.
+
+## Completion rules
+
+Before finalizing:
+
+1. Validate causal sufficiency and expose assumptions.
+2. Check cross-tree identifier consistency.
+3. Distinguish observations from interpretations.
+4. List contradictions and unresolved questions.
+5. Report excluded, unreadable, generated, binary, or oversized files.
+6. Give one primary next action, not an unranked task list.
+7. State what evidence could overturn the recommendation.

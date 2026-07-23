@@ -1,0 +1,104 @@
+import { parse } from "yaml";
+import {
+  validateModel,
+  validateThroughput,
+  type LtpModel,
+  type ThroughputData,
+} from "./model";
+
+/**
+ * One project shown in the multi-project picker. Models are loaded from
+ * `projects/<slug>/model.yaml` (relative to the page) unless `model` /
+ * `throughput` override the path.
+ */
+export interface ProjectSummary {
+  slug: string;
+  name: string;
+  blurb?: string;
+  analysis_mode?: string;
+  source?: string;
+  updated?: string;
+  model?: string;
+  throughput?: string;
+}
+
+/**
+ * Where the dashboard gets its projects:
+ * - "static": a published `projects/manifest.json` (the site, or `vite dev`).
+ * - "live":  the local read-only server (serve_dashboard.py), a single project
+ *            served at /api/model — the manifest is absent, so we fall back.
+ */
+export type ProjectSource =
+  | { mode: "static"; projects: ProjectSummary[] }
+  | { mode: "live"; projects: ProjectSummary[] };
+
+export interface LoadedModel {
+  model: LtpModel;
+  throughput: ThroughputData | null;
+}
+
+async function fetchText(url: string): Promise<string | null> {
+  const response = await fetch(url, { cache: "no-store" });
+  if (response.status === 204 || response.status === 404) return null;
+  if (!response.ok) throw new Error(`${url} returned ${response.status}`);
+  const contentType = response.headers.get("content-type") ?? "";
+  const text = await response.text();
+  // Static hosts with SPA fallback answer a missing file with index.html at
+  // HTTP 200. Treat an HTML response to a YAML/JSON request as "absent" so an
+  // optional file (e.g. throughput.yaml) doesn't get parsed as the page.
+  if (contentType.includes("text/html") || /^\s*<(?:!doctype|html)\b/i.test(text)) {
+    return null;
+  }
+  return text;
+}
+
+/**
+ * Prefer a static manifest; fall back to the single live project served by
+ * serve_dashboard.py. Relative paths keep this working at "/" and under a
+ * subpath such as "/dashboard/".
+ */
+export async function resolveProjectSource(): Promise<ProjectSource> {
+  let manifestText: string | null = null;
+  try {
+    manifestText = await fetchText("projects/manifest.json");
+  } catch {
+    manifestText = null;
+  }
+  if (manifestText) {
+    try {
+      const parsed = JSON.parse(manifestText) as { projects?: ProjectSummary[] };
+      const projects = (parsed.projects ?? []).filter(
+        (project) => project && project.slug && project.name,
+      );
+      if (projects.length) return { mode: "static", projects };
+    } catch {
+      // Malformed manifest — fall through to the live server.
+    }
+  }
+  return { mode: "live", projects: [{ slug: "__live__", name: "Live model" }] };
+}
+
+export async function loadProjectModel(
+  source: ProjectSource,
+  project: ProjectSummary,
+): Promise<LoadedModel> {
+  let modelText: string | null;
+  let throughputText: string | null;
+  if (source.mode === "live") {
+    [modelText, throughputText] = await Promise.all([
+      fetchText("/api/model"),
+      fetchText("/api/throughput"),
+    ]);
+  } else {
+    const base = `projects/${project.slug}/`;
+    [modelText, throughputText] = await Promise.all([
+      fetchText(project.model ?? `${base}model.yaml`),
+      fetchText(project.throughput ?? `${base}throughput.yaml`),
+    ]);
+  }
+  if (!modelText) throw new Error("The project model file could not be loaded.");
+  return {
+    model: validateModel(parse(modelText)),
+    throughput: throughputText ? validateThroughput(parse(throughputText)) : null,
+  };
+}

@@ -1,12 +1,10 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { parse } from "yaml";
 import { DetailsPanel } from "./DetailsPanel";
 import { Overview } from "./Overview";
+import { ProjectPicker } from "./ProjectPicker";
 import { TreeList } from "./TreeList";
 import {
   indexModel,
-  validateModel,
-  validateThroughput,
   viewLabels,
   viewOrder,
   type Confidence,
@@ -16,6 +14,12 @@ import {
   type ThroughputData,
   type TreeView,
 } from "./model";
+import {
+  loadProjectModel,
+  resolveProjectSource,
+  type ProjectSource,
+  type ProjectSummary,
+} from "./projects";
 
 type Screen = "overview" | TreeView;
 type TreeMode = "graph" | "list";
@@ -54,14 +58,9 @@ function fingerprint(meta: DashboardMeta): string {
   ]);
 }
 
-async function fetchText(url: string): Promise<string | null> {
-  const response = await fetch(url, { cache: "no-store" });
-  if (response.status === 204 || response.status === 404) return null;
-  if (!response.ok) throw new Error(`${url} returned ${response.status}`);
-  return response.text();
-}
-
 export default function App() {
+  const [source, setSource] = useState<ProjectSource | null>(null);
+  const [activeProject, setActiveProject] = useState<ProjectSummary | null>(null);
   const [model, setModel] = useState<LtpModel | null>(null);
   const [throughput, setThroughput] = useState<ThroughputData | null>(null);
   const [screen, setScreen] = useState<Screen>("overview");
@@ -80,30 +79,69 @@ export default function App() {
   const fingerprintRef = useRef<string | null>(null);
   const collapseTimersRef = useRef<Map<string, number>>(new Map());
 
-  const loadData = useCallback(async (showUpdated = false) => {
-    try {
-      const [modelText, throughputText] = await Promise.all([
-        fetchText("/api/model"),
-        fetchText("/api/throughput"),
-      ]);
-      if (!modelText) throw new Error("ltp/ltp-model.yaml was not found");
-      const nextModel = validateModel(parse(modelText));
-      const nextThroughput = throughputText
-        ? validateThroughput(parse(throughputText))
-        : null;
-      setModel(nextModel);
-      setThroughput(nextThroughput);
-      setError(null);
-      setSyncState(showUpdated ? "updated" : "ready");
-      if (showUpdated) window.setTimeout(() => setSyncState("ready"), 1600);
-    } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Could not load the model");
-      setSyncState("error");
-    }
+  const isLive = source?.mode === "live";
+  const canSwitch = source?.mode === "static" && source.projects.length > 1;
+
+  const resetViewState = useCallback(() => {
+    setScreen("overview");
+    setSelectedId(null);
+    setExpandedByView({});
+    setCollapsingByView({});
   }, []);
 
+  // Resolve where projects come from (static manifest, or the live /api server).
   useEffect(() => {
-    void loadData();
+    let cancelled = false;
+    (async () => {
+      try {
+        const resolved = await resolveProjectSource();
+        if (cancelled) return;
+        setSource(resolved);
+        // A single project (or the live server) opens straight away; two or
+        // more static projects land on the picker first.
+        if (resolved.mode === "live" || resolved.projects.length === 1) {
+          setActiveProject(resolved.projects[0]);
+        }
+      } catch (caught) {
+        if (cancelled) return;
+        setError(caught instanceof Error ? caught.message : "Could not load projects");
+        setSyncState("error");
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Load the active project's model whenever it changes.
+  useEffect(() => {
+    if (!source || !activeProject) return;
+    let cancelled = false;
+    setModel(null);
+    setThroughput(null);
+    setSyncState("loading");
+    (async () => {
+      try {
+        const loaded = await loadProjectModel(source, activeProject);
+        if (cancelled) return;
+        setModel(loaded.model);
+        setThroughput(loaded.throughput);
+        setError(null);
+        setSyncState("ready");
+      } catch (caught) {
+        if (cancelled) return;
+        setError(caught instanceof Error ? caught.message : "Could not load the model");
+        setSyncState("error");
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [source, activeProject]);
+
+  // Live mode only: poll file metadata and hot-reload the model on change.
+  useEffect(() => {
+    if (source?.mode !== "live" || !activeProject) return;
     let cancelled = false;
     const poll = async () => {
       try {
@@ -112,11 +150,21 @@ export default function App() {
         const meta = (await response.json()) as DashboardMeta;
         const nextFingerprint = fingerprint(meta);
         if (fingerprintRef.current && fingerprintRef.current !== nextFingerprint) {
-          await loadData(true);
+          try {
+            const loaded = await loadProjectModel(source, activeProject);
+            if (cancelled) return;
+            setModel(loaded.model);
+            setThroughput(loaded.throughput);
+            setError(null);
+            setSyncState("updated");
+            window.setTimeout(() => setSyncState("ready"), 1600);
+          } catch {
+            // The next successful poll will restore the model.
+          }
         }
         fingerprintRef.current = nextFingerprint;
       } catch {
-        // The next successful poll will restore the sync indicator via loadData.
+        // The next successful poll will restore the sync indicator.
       }
     };
     const timer = window.setInterval(() => {
@@ -127,7 +175,7 @@ export default function App() {
       cancelled = true;
       window.clearInterval(timer);
     };
-  }, [loadData]);
+  }, [source, activeProject]);
 
   useEffect(
     () => () => {
@@ -137,6 +185,22 @@ export default function App() {
     },
     [],
   );
+
+  const openProject = useCallback(
+    (project: ProjectSummary) => {
+      resetViewState();
+      setActiveProject(project);
+    },
+    [resetViewState],
+  );
+
+  const backToProjects = useCallback(() => {
+    resetViewState();
+    setActiveProject(null);
+    setModel(null);
+    setThroughput(null);
+    setError(null);
+  }, [resetViewState]);
 
   const index = useMemo(() => (model ? indexModel(model) : null), [model]);
   const selected = selectedId && index ? index.entities.get(selectedId) ?? null : null;
@@ -194,13 +258,37 @@ export default function App() {
     update(next);
   };
 
+  // Still resolving where projects come from.
+  if (!source) {
+    return (
+      <main className="load-state">
+        <div className={error ? "load-mark load-mark--error" : "load-mark"}>{error ? "!" : ""}</div>
+        <h1>{error ? "The dashboard needs attention" : "Finding projects…"}</h1>
+        <p>{error ?? "Locating the shared causal models to explore."}</p>
+        {error && <button className="primary-button" onClick={() => window.location.reload()}>Try again</button>}
+      </main>
+    );
+  }
+
+  // Multi-project (static) mode with nothing loaded yet: the picker.
+  if (source.mode === "static" && !model) {
+    return (
+      <ProjectPicker
+        projects={source.projects}
+        onOpen={openProject}
+        loadingSlug={activeProject && !error ? activeProject.slug : null}
+        error={error}
+      />
+    );
+  }
+
   if (!model || !index) {
     return (
       <main className="load-state">
         <div className={error ? "load-mark load-mark--error" : "load-mark"}>{error ? "!" : ""}</div>
         <h1>{error ? "The model needs attention" : "Tracing the logic…"}</h1>
         <p>{error ?? "Loading the shared causal model and its evidence."}</p>
-        {error && <button className="primary-button" onClick={() => void loadData()}>Try again</button>}
+        {error && <button className="primary-button" onClick={() => window.location.reload()}>Try again</button>}
       </main>
     );
   }
@@ -230,10 +318,20 @@ export default function App() {
           <span className="project-tag">{model.project.name}</span>
         </div>
         <div className="header-state">
-          <span className={`sync-state sync-state--${syncState}`}>
-            <i />{syncState === "updated" ? "Model updated" : syncState === "error" ? "Sync issue" : "Live model"}
-          </span>
-          <span className="read-only">Local · read only</span>
+          {isLive ? (
+            <>
+              <span className={`sync-state sync-state--${syncState}`}>
+                <i />{syncState === "updated" ? "Model updated" : syncState === "error" ? "Sync issue" : "Live model"}
+              </span>
+              <span className="read-only">Local · read only</span>
+            </>
+          ) : (
+            canSwitch && (
+              <button type="button" className="switch-project" onClick={backToProjects}>
+                <span aria-hidden="true">←</span> Projects
+              </button>
+            )
+          )}
         </div>
       </header>
 

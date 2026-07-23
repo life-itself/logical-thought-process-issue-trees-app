@@ -14,6 +14,10 @@
         "href": "/story/index.html"
       },
       {
+        "name": "Dashboard",
+        "href": "/dashboard/index.html"
+      },
+      {
         "name": "Blog",
         "href": "/blog/how-we-can-argue-better-with-claim-trees"
       }
@@ -25,7 +29,9 @@
     "/alignment/uploads"
   ],
   "contentHide": [
-    "/story/_ds"
+    "/story/_ds",
+    "/dashboard/assets",
+    "/dashboard/projects"
   ],
   "social": [
     {

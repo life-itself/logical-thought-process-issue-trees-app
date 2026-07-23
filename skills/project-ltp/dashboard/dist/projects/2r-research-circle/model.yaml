@@ -1,0 +1,1223 @@
+project:
+  name: 2R Research Circle
+  analyzed_path: /Users/davidjoseph/github/2R-Research
+  analysis_mode: reconciliation
+  provisional_goal: G-1
+
+analysis:
+  current_constraint: RC-1
+  recommended_next_action: ACT-1
+  expected_effect: TR-1
+  updated_at: "2026-07-23T14:05:03+02:00"
+
+entities:
+  - id: G-1
+    type: goal
+    statement: 2R inquiry becomes cumulative, plural, and action-guiding through a continually improving shared model
+    status: confirmed
+    confidence: high
+    evidence: [EVD-1, EVD-8]
+    assumptions:
+      - "ASM-1 — Improving the shared model is the Research Circle's distinctive contribution to 2R."
+    reasoning: The prompt explicitly distinguishes research-circle throughput from 2R-wide transformation and records agreement that improving the 2R LTP trees is the research group's throughput.
+
+  - id: CSF-1
+    type: critical_success_factor
+    statement: Individual research contributions can enter a clear path from expression to model impact
+    status: inferred
+    confidence: high
+    evidence: [EVD-5, EVD-8, EVD-9]
+
+  - id: CSF-2
+    type: critical_success_factor
+    statement: Model changes receive legitimate, transparent, and reversible dispositions
+    status: inferred
+    confidence: high
+    evidence: [EVD-4, EVD-14]
+
+  - id: CSF-3
+    type: critical_success_factor
+    statement: The shared model preserves cumulative reasoning, evidence, disagreement, and downstream implications
+    status: inferred
+    confidence: high
+    evidence: [EVD-6, EVD-8]
+
+  - id: CSF-4
+    type: critical_success_factor
+    statement: Individual and group trees can align across scales without erasing autonomy or difference
+    status: inferred
+    confidence: high
+    evidence: [EVD-10]
+
+  - id: NC-1
+    type: necessary_condition
+    statement: Conversations, papers, and presentations remain linked to the claims and proposed changes they generate
+    status: inferred
+    confidence: high
+    evidence: [EVD-5, EVD-8]
+
+  - id: NC-2
+    type: necessary_condition
+    statement: Claims, evidence, assumptions, links, and revisions have stable identities and provenance
+    status: inferred
+    confidence: high
+    evidence: [EVD-4, EVD-14]
+
+  - id: NC-3
+    type: necessary_condition
+    statement: Standing, stewardship, review criteria, objection handling, and decision authority are explicit
+    status: inferred
+    confidence: high
+    evidence: [EVD-4, EVD-14]
+
+  - id: NC-4
+    type: necessary_condition
+    statement: Contributors can participate naturally without mastering tree formalism
+    status: inferred
+    confidence: high
+    evidence: [EVD-5]
+
+  - id: NC-5
+    type: necessary_condition
+    statement: Research effort is judged by model improvement and downstream relevance rather than activity
+    status: inferred
+    confidence: high
+    evidence: [EVD-8]
+
+  - id: NC-6
+    type: necessary_condition
+    statement: Tree boundaries, scale, shared interfaces, and grafting rules are explicit
+    status: inferred
+    confidence: high
+    evidence: [EVD-10]
+
+  - id: NC-7
+    type: necessary_condition
+    statement: The group regularly reviews uptake failures, model quality, and the current research constraint
+    status: inferred
+    confidence: medium
+    evidence: [EVD-3, EVD-16]
+
+  - id: RC-1
+    type: root_cause
+    statement: No legitimate low-friction uptake loop connects research contributions to versioned shared-model changes
+    status: inferred
+    confidence: high
+    evidence: [EVD-4, EVD-5, EVD-8]
+    assumptions:
+      - "ASM-2 — The Research Circle already generates potentially useful contributions."
+      - "ASM-3 — Uptake, not idea generation, is the present constraint."
+    reasoning: The prompt reports revision suggestions without a disposition path, seeks a bridge from natural conversation into trees, and defines research throughput as duly improving the trees.
+
+  - id: RC-2
+    type: root_cause
+    statement: Authority and governance for consequential tree revisions are undefined
+    status: observed
+    confidence: high
+    evidence: [EVD-4]
+
+  - id: RC-3
+    type: root_cause
+    statement: Contributions have no standard representation as source-linked model change proposals
+    status: inferred
+    confidence: high
+    evidence: [EVD-5, EVD-7]
+
+  - id: RC-4
+    type: root_cause
+    statement: Platform ideas foreground matching and a master tree before the uptake process and model are mature
+    status: observed
+    confidence: high
+    evidence: [EVD-7]
+
+  - id: RC-5
+    type: root_cause
+    statement: Individual, group, and everyone-level tree interfaces and grafting semantics are undefined
+    status: observed
+    confidence: high
+    evidence: [EVD-10]
+
+  - id: UDE-1
+    type: undesirable_effect
+    statement: Revision suggestions and objections have no reliable disposition
+    status: observed
+    confidence: high
+    evidence: [EVD-4]
+
+  - id: UDE-2
+    type: undesirable_effect
+    statement: Consequential shared trees remain vulnerable to unilateral judgment or a few points of failure
+    status: observed
+    confidence: high
+    evidence: [EVD-4]
+
+  - id: UDE-3
+    type: undesirable_effect
+    statement: Important discussions can recur without the group's shared vision or commitments changing
+    status: inferred
+    confidence: medium
+    evidence: [EVD-6]
+
+  - id: UDE-4
+    type: undesirable_effect
+    statement: Contributors appear forced to choose conversational freedom or structured accumulation
+    status: inferred
+    confidence: high
+    evidence: [EVD-5]
+
+  - id: UDE-5
+    type: undesirable_effect
+    statement: Automated alignment suggestions are not yet poignant or reliable enough to create synergy
+    status: observed
+    confidence: high
+    evidence: [EVD-7]
+
+  - id: UDE-6
+    type: undesirable_effect
+    statement: Research can be called relevant without producing any durable improvement to the shared model
+    status: inferred
+    confidence: high
+    evidence: [EVD-8]
+
+  - id: UDE-7
+    type: undesirable_effect
+    statement: A 2R group-level tree can become an imposed universal frame for differently situated contributors
+    status: inferred
+    confidence: medium
+    evidence: [EVD-7, EVD-10]
+
+  - id: UDE-8
+    type: undesirable_effect
+    statement: Valuable contributions remain hidden, unwitnessed, or disconnected from where they could help
+    status: inferred
+    confidence: medium
+    evidence: [EVD-7, EVD-9]
+
+  - id: CO-1
+    type: common_objective
+    statement: Collective inquiry accumulates into coherent and revisable shared guidance
+    status: inferred
+    confidence: high
+    evidence: [EVD-5, EVD-6]
+
+  - id: NEED-1
+    type: need
+    statement: Preserve spontaneous conversation, intuition, accessibility, and personal learning
+    status: observed
+    confidence: high
+    evidence: [EVD-5, EVD-6]
+
+  - id: NEED-2
+    type: need
+    statement: Preserve logical focus, traceability, cumulative progress, and alignment
+    status: observed
+    confidence: high
+    evidence: [EVD-5, EVD-6]
+
+  - id: OPT-1
+    type: option
+    statement: Keep research conversation outside tree constraints
+    status: provisional
+    confidence: high
+    evidence: [EVD-5]
+
+  - id: OPT-2
+    type: option
+    statement: Require contributors to formulate work directly inside the trees
+    status: provisional
+    confidence: high
+    evidence: [EVD-5]
+
+  - id: CO-2
+    type: common_objective
+    statement: Align inquiry across people and groups without domination
+    status: inferred
+    confidence: high
+    evidence: [EVD-10]
+
+  - id: NEED-3
+    type: need
+    statement: Preserve local goals, language, context, and group autonomy
+    status: inferred
+    confidence: high
+    evidence: [EVD-10]
+
+  - id: NEED-4
+    type: need
+    statement: Discover shared structure that enables coordination across groups
+    status: inferred
+    confidence: high
+    evidence: [EVD-10]
+
+  - id: OPT-3
+    type: option
+    statement: Keep individual and group trees isolated
+    status: provisional
+    confidence: high
+    evidence: [EVD-10]
+
+  - id: OPT-4
+    type: option
+    statement: Merge aligned trees into one authoritative everyone-level tree
+    status: provisional
+    confidence: medium
+    evidence: [EVD-7, EVD-10]
+
+  - id: INJ-1
+    type: injection
+    statement: Use a dual-channel uptake loop from natural contribution to proposed model delta to human disposition
+    status: inferred
+    confidence: high
+    evidence: [EVD-5, EVD-8]
+    reasoning: Contributors keep their natural mode while a mediated layer makes possible tree changes explicit and reviewable.
+
+  - id: INJ-2
+    type: injection
+    statement: Federate trees through provenance-preserving grafts, explicit interfaces, and retained disagreement
+    status: inferred
+    confidence: medium
+    evidence: [EVD-10]
+
+  - id: INJ-3
+    type: injection
+    statement: Establish a bounded stewardship and revision protocol with visible standing and decision rules
+    status: inferred
+    confidence: high
+    evidence: [EVD-4, EVD-14]
+
+  - id: INJ-4
+    type: injection
+    statement: Represent every contribution as a source-linked proposed model delta with evidence, assumptions, and status
+    status: inferred
+    confidence: high
+    evidence: [EVD-5, EVD-14]
+
+  - id: INJ-5
+    type: injection
+    statement: Let AI suggest mappings and deltas while contributors and authorized reviewers retain confirmation authority
+    status: inferred
+    confidence: high
+    evidence: [EVD-7]
+
+  - id: INJ-6
+    type: injection
+    statement: Maintain a versioned contribution ledger and propagate accepted changes to dependent claims and decisions
+    status: inferred
+    confidence: medium
+    evidence: [EVD-6, EVD-8]
+
+  - id: INJ-7
+    type: injection
+    statement: Review uptake flow, model quality, downstream use, and the current constraint on a regular cadence
+    status: inferred
+    confidence: medium
+    evidence: [EVD-3, EVD-16]
+
+  - id: DE-1
+    type: desirable_effect
+    statement: Natural conversations and papers yield visible source-linked change proposals
+    status: inferred
+    confidence: high
+    evidence: [EVD-5]
+
+  - id: DE-2
+    type: desirable_effect
+    statement: Every material proposal receives an accepted, disputed, rejected, or deferred disposition
+    status: inferred
+    confidence: high
+    evidence: [EVD-4]
+
+  - id: DE-3
+    type: desirable_effect
+    statement: Accepted model changes preserve evidence, provenance, assumptions, objections, and version history
+    status: inferred
+    confidence: high
+    evidence: [EVD-4, EVD-14]
+
+  - id: DE-4
+    type: desirable_effect
+    statement: The research circle's shared vision becomes more coherent without suppressing personal development
+    status: inferred
+    confidence: medium
+    evidence: [EVD-6]
+
+  - id: DE-5
+    type: desirable_effect
+    statement: Research effort is steered toward unresolved model gaps and consequential assumptions
+    status: inferred
+    confidence: medium
+    evidence: [EVD-8]
+
+  - id: DE-6
+    type: desirable_effect
+    statement: Aligned groups can coordinate through shared structure while preserving local differences
+    status: inferred
+    confidence: low
+    evidence: [EVD-10]
+
+  - id: DE-7
+    type: desirable_effect
+    statement: 2R acts from a better tested and more complete account of cultural transformation
+    status: inferred
+    confidence: medium
+    evidence: [EVD-1, EVD-8, EVD-11]
+
+  - id: NBR-1
+    type: negative_branch
+    statement: Formal uptake bureaucracy suppresses the spontaneous inquiry it is meant to preserve
+    status: provisional
+    confidence: high
+    evidence: [EVD-5]
+
+  - id: NBR-2
+    type: negative_branch
+    statement: AI mappings misrepresent contributions or manufacture significance
+    status: provisional
+    confidence: high
+    evidence: [EVD-7]
+
+  - id: NBR-3
+    type: negative_branch
+    statement: Stewards or majorities capture the shared narrative and marginalize objections
+    status: provisional
+    confidence: high
+    evidence: [EVD-4]
+
+  - id: NBR-4
+    type: negative_branch
+    statement: Grafting produces false consensus, incoherent mega-trees, or lowest-common-denominator goals
+    status: provisional
+    confidence: high
+    evidence: [EVD-10]
+
+  - id: OBS-1
+    type: obstacle
+    statement: The Research Circle has no explicit charter for goal, throughput, boundary, standing, and protected floors
+    status: inferred
+    confidence: medium
+    evidence: [EVD-8]
+
+  - id: IO-1
+    type: intermediate_objective
+    statement: A provisional Research Circle charter is accepted for one learning cycle
+    status: provisional
+    confidence: high
+    evidence: [EVD-8]
+
+  - id: OBS-2
+    type: obstacle
+    statement: No accepted protocol decides how tree changes are proposed, reviewed, disputed, or adopted
+    status: observed
+    confidence: high
+    evidence: [EVD-4]
+
+  - id: IO-2
+    type: intermediate_objective
+    statement: A time-bounded governance protocol assigns roles, dispositions, and revision rules
+    status: provisional
+    confidence: high
+    evidence: [EVD-4, EVD-14]
+
+  - id: OBS-3
+    type: obstacle
+    statement: There is no minimal contribution and change-record format
+    status: inferred
+    confidence: high
+    evidence: [EVD-5, EVD-7]
+
+  - id: IO-3
+    type: intermediate_objective
+    statement: A manual template captures source, claim, proposed delta, evidence, rationale, and affected nodes
+    status: provisional
+    confidence: high
+    evidence: [EVD-5]
+
+  - id: OBS-4
+    type: obstacle
+    statement: The group has no end-to-end evidence that the proposed uptake loop improves a real tree
+    status: inferred
+    confidence: high
+    evidence: [EVD-4, EVD-8]
+
+  - id: IO-4
+    type: intermediate_objective
+    statement: One real contribution completes the manual uptake loop with a recorded disposition
+    status: provisional
+    confidence: high
+    evidence: [EVD-8]
+
+  - id: OBS-5
+    type: obstacle
+    statement: AI matching quality and human confirmation costs are unknown
+    status: observed
+    confidence: high
+    evidence: [EVD-7]
+
+  - id: IO-5
+    type: intermediate_objective
+    statement: AI and steward mappings are compared on real contributions with errors and corrections recorded
+    status: provisional
+    confidence: high
+    evidence: [EVD-7]
+
+  - id: OBS-6
+    type: obstacle
+    statement: Grafting semantics have not been tested between two actual group trees
+    status: observed
+    confidence: high
+    evidence: [EVD-10]
+
+  - id: IO-6
+    type: intermediate_objective
+    statement: One pairwise grafting experiment preserves agreement, difference, provenance, and exit
+    status: provisional
+    confidence: medium
+    evidence: [EVD-10]
+
+  - id: OBS-7
+    type: obstacle
+    statement: The group cannot yet see whether accepted revisions influence later research or 2R decisions
+    status: inferred
+    confidence: medium
+    evidence: [EVD-6, EVD-8]
+
+  - id: IO-7
+    type: intermediate_objective
+    statement: Accepted changes are traced to dependent questions, research priorities, and decisions
+    status: provisional
+    confidence: medium
+    evidence: [EVD-6]
+
+  - id: ACT-1
+    type: action
+    statement: Run one manual contribution-to-tree pilot using a recent Research Circle paper or session
+    status: inferred
+    confidence: high
+    evidence: [EVD-4, EVD-5, EVD-8]
+    reasoning: This is the smallest reversible experiment that tests governance, contribution representation, participant burden, and actual model improvement together.
+
+  - id: TR-1
+    type: expected_effect
+    statement: One source-linked model delta receives a recorded disposition and the loop's frictions become visible
+    status: inferred
+    confidence: high
+    evidence: [EVD-8]
+
+  - id: ACT-2
+    type: action
+    statement: Revise and adopt the charter and governance protocol from the pilot evidence
+    status: provisional
+    confidence: high
+    evidence: [EVD-4]
+
+  - id: TR-2
+    type: expected_effect
+    statement: A versioned v0.1 protocol has named roles, standing, dispositions, review timing, and appeal
+    status: inferred
+    confidence: high
+    evidence: [EVD-14]
+
+  - id: ACT-3
+    type: action
+    statement: Compare AI-suggested mappings with independent steward mappings on the pilot contribution
+    status: provisional
+    confidence: medium
+    evidence: [EVD-7]
+
+  - id: TR-3
+    type: expected_effect
+    statement: Mapping accuracy, correction effort, failure modes, and confirmation needs are evidenced
+    status: inferred
+    confidence: medium
+    evidence: [EVD-7]
+
+  - id: ACT-4
+    type: action
+    statement: Conduct a pairwise grafting workshop with one aligned external group's tree
+    status: provisional
+    confidence: low
+    evidence: [EVD-10]
+
+  - id: TR-4
+    type: expected_effect
+    statement: One graft records shared structure, incompatible assumptions, local-only branches, provenance, and exit conditions
+    status: inferred
+    confidence: low
+    evidence: [EVD-10]
+
+links:
+  - id: L-001
+    from: CSF-1
+    to: G-1
+    relation: necessary_for
+    logic: necessity
+    assumption: ASM-4
+    confidence: high
+  - id: L-002
+    from: CSF-2
+    to: G-1
+    relation: necessary_for
+    logic: necessity
+    assumption: ASM-5
+    confidence: high
+  - id: L-003
+    from: CSF-3
+    to: G-1
+    relation: necessary_for
+    logic: necessity
+    assumption: ASM-6
+    confidence: high
+  - id: L-004
+    from: CSF-4
+    to: G-1
+    relation: necessary_for
+    logic: necessity
+    assumption: ASM-7
+    confidence: medium
+  - id: L-005
+    from: NC-1
+    to: CSF-1
+    relation: necessary_for
+    confidence: high
+  - id: L-006
+    from: NC-4
+    to: CSF-1
+    relation: necessary_for
+    confidence: high
+  - id: L-007
+    from: NC-3
+    to: CSF-2
+    relation: necessary_for
+    confidence: high
+  - id: L-008
+    from: NC-2
+    to: CSF-3
+    relation: necessary_for
+    confidence: high
+  - id: L-009
+    from: NC-5
+    to: CSF-3
+    relation: necessary_for
+    confidence: high
+  - id: L-010
+    from: NC-6
+    to: CSF-4
+    relation: necessary_for
+    confidence: high
+  - id: L-011
+    from: NC-7
+    to: CSF-3
+    relation: necessary_for
+    confidence: medium
+
+  - id: L-012
+    from: RC-2
+    to: UDE-1
+    relation: causes
+    logic: contributory
+    assumption: ASM-8
+    confidence: high
+  - id: L-013
+    from: RC-2
+    to: UDE-2
+    relation: causes
+    logic: contributory
+    assumption: ASM-9
+    confidence: high
+  - id: L-014
+    from: RC-3
+    to: UDE-3
+    relation: contributes_to
+    logic: contributory
+    assumption: ASM-10
+    confidence: medium
+  - id: L-015
+    from: RC-1
+    to: UDE-4
+    relation: causes
+    logic: contributory
+    assumption: ASM-11
+    confidence: high
+  - id: L-016
+    from: UDE-4
+    to: UDE-8
+    relation: contributes_to
+    logic: contributory
+    assumption: ASM-12
+    confidence: medium
+  - id: L-017
+    from: RC-4
+    to: UDE-5
+    relation: causes
+    logic: contributory
+    assumption: ASM-13
+    confidence: high
+  - id: L-018
+    from: RC-1
+    to: UDE-6
+    relation: causes
+    logic: contributory
+    assumption: ASM-14
+    confidence: high
+  - id: L-019
+    from: RC-5
+    to: UDE-7
+    relation: contributes_to
+    logic: contributory
+    assumption: ASM-15
+    confidence: medium
+  - id: L-020
+    from: UDE-1
+    to: UDE-3
+    relation: contributes_to
+    logic: contributory
+    assumption: ASM-16
+    confidence: medium
+  - id: L-021
+    from: UDE-8
+    to: UDE-6
+    relation: contributes_to
+    logic: contributory
+    assumption: ASM-17
+    confidence: medium
+  - id: L-022
+    from: UDE-6
+    to: UDE-3
+    relation: reinforces
+    logic: contributory
+    assumption: ASM-18
+    confidence: medium
+
+  - id: L-023
+    from: NEED-1
+    to: CO-1
+    relation: necessary_for
+    confidence: high
+  - id: L-024
+    from: NEED-2
+    to: CO-1
+    relation: necessary_for
+    confidence: high
+  - id: L-025
+    from: OPT-1
+    to: NEED-1
+    relation: believed_necessary_for
+    assumption: ASM-19
+    confidence: medium
+  - id: L-026
+    from: OPT-2
+    to: NEED-2
+    relation: believed_necessary_for
+    assumption: ASM-20
+    confidence: medium
+  - id: L-027
+    from: OPT-1
+    to: OPT-2
+    relation: conflicts_with
+    assumption: ASM-21
+    confidence: high
+  - id: L-028
+    from: NEED-3
+    to: CO-2
+    relation: necessary_for
+    confidence: high
+  - id: L-029
+    from: NEED-4
+    to: CO-2
+    relation: necessary_for
+    confidence: high
+  - id: L-030
+    from: OPT-3
+    to: NEED-3
+    relation: believed_necessary_for
+    assumption: ASM-22
+    confidence: medium
+  - id: L-031
+    from: OPT-4
+    to: NEED-4
+    relation: believed_necessary_for
+    assumption: ASM-23
+    confidence: medium
+  - id: L-032
+    from: OPT-3
+    to: OPT-4
+    relation: conflicts_with
+    assumption: ASM-24
+    confidence: high
+
+  - id: L-033
+    from: INJ-1
+    to: DE-1
+    relation: causes
+    assumption: ASM-25
+    confidence: high
+  - id: L-034
+    from: INJ-3
+    to: DE-2
+    relation: causes
+    assumption: ASM-26
+    confidence: high
+  - id: L-035
+    from: INJ-4
+    to: DE-3
+    relation: enables
+    assumption: ASM-27
+    confidence: high
+  - id: L-036
+    from: INJ-5
+    to: DE-1
+    relation: enables
+    assumption: ASM-28
+    confidence: medium
+  - id: L-037
+    from: DE-1
+    to: DE-2
+    relation: enables
+    confidence: high
+  - id: L-038
+    from: DE-2
+    to: DE-3
+    relation: enables
+    confidence: high
+  - id: L-039
+    from: INJ-6
+    to: DE-4
+    relation: causes
+    assumption: ASM-29
+    confidence: medium
+  - id: L-040
+    from: DE-3
+    to: DE-4
+    relation: contributes_to
+    confidence: medium
+  - id: L-041
+    from: INJ-7
+    to: DE-5
+    relation: causes
+    assumption: ASM-30
+    confidence: medium
+  - id: L-042
+    from: DE-4
+    to: DE-5
+    relation: enables
+    confidence: medium
+  - id: L-043
+    from: INJ-2
+    to: DE-6
+    relation: causes
+    assumption: ASM-31
+    confidence: low
+  - id: L-044
+    from: DE-5
+    to: DE-7
+    relation: contributes_to
+    confidence: medium
+  - id: L-045
+    from: DE-6
+    to: DE-7
+    relation: contributes_to
+    confidence: low
+  - id: L-046
+    from: DE-7
+    to: G-1
+    relation: contributes_to
+    confidence: medium
+  - id: L-047
+    from: INJ-1
+    to: NBR-1
+    relation: may_cause
+    confidence: high
+  - id: L-048
+    from: INJ-5
+    to: NBR-2
+    relation: may_cause
+    confidence: high
+  - id: L-049
+    from: INJ-3
+    to: NBR-3
+    relation: may_cause
+    confidence: high
+  - id: L-050
+    from: INJ-2
+    to: NBR-4
+    relation: may_cause
+    confidence: high
+  - id: L-051
+    from: INJ-1
+    to: RC-1
+    relation: addresses
+    confidence: high
+  - id: L-052
+    from: INJ-3
+    to: RC-2
+    relation: addresses
+    confidence: high
+  - id: L-053
+    from: INJ-4
+    to: RC-3
+    relation: addresses
+    confidence: high
+  - id: L-054
+    from: INJ-5
+    to: RC-4
+    relation: addresses
+    confidence: medium
+  - id: L-055
+    from: INJ-2
+    to: RC-5
+    relation: addresses
+    confidence: medium
+
+  - id: L-056
+    from: OBS-1
+    to: IO-1
+    relation: overcome_by
+    confidence: high
+  - id: L-057
+    from: IO-1
+    to: IO-2
+    relation: enables
+    confidence: high
+  - id: L-058
+    from: OBS-2
+    to: IO-2
+    relation: overcome_by
+    confidence: high
+  - id: L-059
+    from: IO-2
+    to: IO-3
+    relation: enables
+    confidence: high
+  - id: L-060
+    from: OBS-3
+    to: IO-3
+    relation: overcome_by
+    confidence: high
+  - id: L-061
+    from: IO-3
+    to: IO-4
+    relation: enables
+    confidence: high
+  - id: L-062
+    from: OBS-4
+    to: IO-4
+    relation: overcome_by
+    confidence: high
+  - id: L-063
+    from: IO-4
+    to: IO-5
+    relation: enables
+    confidence: high
+  - id: L-064
+    from: OBS-5
+    to: IO-5
+    relation: overcome_by
+    confidence: high
+  - id: L-065
+    from: IO-5
+    to: IO-6
+    relation: enables
+    confidence: medium
+  - id: L-066
+    from: OBS-6
+    to: IO-6
+    relation: overcome_by
+    confidence: high
+  - id: L-067
+    from: IO-6
+    to: IO-7
+    relation: enables
+    confidence: medium
+  - id: L-068
+    from: OBS-7
+    to: IO-7
+    relation: overcome_by
+    confidence: high
+  - id: L-069
+    from: IO-4
+    to: INJ-1
+    relation: validates
+    confidence: high
+  - id: L-070
+    from: IO-5
+    to: INJ-5
+    relation: validates
+    confidence: medium
+  - id: L-071
+    from: IO-6
+    to: INJ-2
+    relation: validates
+    confidence: medium
+
+  - id: L-072
+    from: ACT-1
+    to: TR-1
+    relation: produces
+    confidence: high
+  - id: L-073
+    from: TR-1
+    to: IO-4
+    relation: achieves
+    confidence: high
+  - id: L-074
+    from: ACT-2
+    to: TR-2
+    relation: produces
+    confidence: high
+  - id: L-075
+    from: TR-2
+    to: IO-2
+    relation: achieves
+    confidence: high
+  - id: L-076
+    from: ACT-3
+    to: TR-3
+    relation: produces
+    confidence: medium
+  - id: L-077
+    from: TR-3
+    to: IO-5
+    relation: achieves
+    confidence: medium
+  - id: L-078
+    from: ACT-4
+    to: TR-4
+    relation: produces
+    confidence: low
+  - id: L-079
+    from: TR-4
+    to: IO-6
+    relation: achieves
+    confidence: low
+
+evidence:
+  - id: EVD-1
+    source: docs/prompts/LTP_BACKGROUND_PROMPT.md
+    lines: "5-17"
+    observation: The organization adopted LTP trees to pursue tangible progress toward better collective intelligence for the metacrisis.
+    interpretation: This establishes the broader purpose but not the Research Circle's distinct goal.
+  - id: EVD-2
+    source: docs/prompts/LTP_BACKGROUND_PROMPT.md
+    lines: "21-23"
+    observation: Initial 2R-wide throughput was defined as durable adoption of real transformation.
+    interpretation: This is organization-level throughput, not research-circle throughput.
+  - id: EVD-3
+    source: docs/prompts/LTP_BACKGROUND_PROMPT.md
+    lines: "35-49"
+    observation: A participant frames 2R as education, R&D, and training that turns information into workable ideas and people into theorists and practitioners.
+    interpretation: The Research Circle may serve an educational pipeline, but this does not itself define research throughput.
+  - id: EVD-4
+    source: docs/prompts/LTP_BACKGROUND_PROMPT.md
+    lines: "51-61"
+    observation: Revision suggestions lacked an authority and disposition process; the author identified update governance and provisional validation as prior to throughput.
+    interpretation: Governance is a directly reported prerequisite and current weakness.
+  - id: EVD-5
+    source: docs/prompts/LTP_BACKGROUND_PROMPT.md
+    lines: "69-69"
+    observation: The prompt names a conflict between spontaneous intuitive conversation and tree-enabled focus, clarity, alignment, and cumulative contribution.
+    interpretation: A bridge must preserve both needs instead of forcing one participation mode.
+  - id: EVD-6
+    source: docs/prompts/LTP_BACKGROUND_PROMPT.md
+    lines: "83-107"
+    observation: The exchange distinguishes personal development from group intellectual progress and defines the latter as increasing coherence of shared vision rather than recurring discussion.
+    interpretation: Persistent shared-model change is the relevant research-circle effect.
+  - id: EVD-7
+    source: docs/prompts/LTP_BACKGROUND_PROMPT.md
+    lines: "115-121"
+    observation: An early platform assumed one authoritative tree, an empty-dancefloor acquisition problem, and automated matching that was limited by immature trees and weak suggestions.
+    interpretation: Interface and matching work may be premature relative to governance and uptake-process validation.
+  - id: EVD-8
+    source: docs/prompts/LTP_BACKGROUND_PROMPT.md
+    lines: "125-167"
+    observation: David distinguishes 2R-wide throughput from Research Circle throughput; David and Rufus agree that duly improving the 2R LTP trees is the latter.
+    interpretation: This is the strongest direct evidence for G-1 and the research throughput unit.
+  - id: EVD-9
+    source: docs/prompts/LTP_BACKGROUND_PROMPT.md
+    lines: "173-173"
+    observation: The prompt concludes that the system should germinate and align individual contributions.
+    interpretation: Contribution development and uptake are central workflows.
+  - id: EVD-10
+    source: docs/prompts/LTP_BACKGROUND_PROMPT.md
+    lines: "177-193"
+    observation: The prompt proposes individual, group, and everyone scales, rejects treating 2R as inherently top-level, and imagines emergent alignment through tree grafting.
+    interpretation: Federation must preserve scale and plurality; the everyone-level model should not be pre-imposed.
+  - id: EVD-11
+    source: docs/ltp_trees/Goal Tree_ Second Renaissance.md
+    lines: "1-24"
+    observation: The organization-level Goal Tree aims at a wiser, weller, regenerative civilization through eight success factors.
+    interpretation: This is the broader model the Research Circle is meant to improve, not the Research Circle's own Goal Tree.
+  - id: EVD-12
+    source: docs/ltp_trees/Current Reality Tree_ Second Renaissance.md
+    lines: "1-13"
+    observation: The pre-existing CRT defines the system as a 2R group and throughput as durable adoption.
+    interpretation: It confirms that the supplied trees operate at organization level.
+  - id: EVD-13
+    source: docs/ltp_trees/Current Reality Tree_ Second Renaissance.md
+    lines: "55-81"
+    observation: The existing CRT lists map governance, throughput, conversion, practice, containers, and learning rhythm as candidate root causes.
+    interpretation: These remain prior hypotheses for 2R proper, not observations about the Research Circle.
+  - id: EVD-14
+    source: docs/ltp_trees/Future Reality Tree_ Second Renaissance.md
+    lines: "17-39"
+    observation: The existing FRT proposes version history, change proposals, objection logging, evidence standards, decision rules, minority reports, cadence, and accountable stewards.
+    interpretation: These elements directly inform the Research Circle governance injection.
+  - id: EVD-15
+    source: docs/ltp_trees/Current Reality Tree_ Second Renaissance.md
+    lines: "321-346"
+    observation: The existing CRT explicitly says its UDEs and causal arrows require validation against lived evidence.
+    interpretation: The Research Circle's first useful work can be a governed model-change pilot rather than accepting the trees wholesale.
+  - id: EVD-16
+    source: docs/ltp_trees/Prerequisite Tree_ Second Renaissance.md
+    lines: "452-482"
+    observation: The pre-existing dependency chain starts with update governance and provisional validation, then proceeds through throughput and implementation.
+    interpretation: A manual uptake loop is prior to platform scaling.
+
+assumptions:
+  - id: ASM-1
+    statement: Improving the shared model is the Research Circle's distinctive contribution to 2R.
+    status: confirmed
+  - id: ASM-2
+    statement: The Research Circle already generates potentially useful contributions.
+    status: inferred
+  - id: ASM-3
+    statement: Uptake, not idea generation, is the present constraint.
+    status: inferred
+  - id: ASM-4
+    statement: Contributions must have a path to model impact for inquiry to become cumulative.
+    status: inferred
+  - id: ASM-5
+    statement: Consequential model changes require legitimate and reversible governance.
+    status: inferred
+  - id: ASM-6
+    statement: A model without provenance and dependency awareness cannot preserve cumulative reasoning.
+    status: inferred
+  - id: ASM-7
+    statement: Cross-scale interoperability is necessary for the full collective-intelligence vision, though not for the first research pilot.
+    status: provisional
+  - id: ASM-8
+    statement: Undefined decision authority leaves revision proposals without reliable disposition.
+    status: inferred
+  - id: ASM-9
+    statement: Unclear authority concentrates consequential updates in a few hands.
+    status: inferred
+  - id: ASM-10
+    statement: Without durable change records, discussion outcomes do not reliably alter shared vision.
+    status: provisional
+  - id: ASM-11
+    statement: Requiring tree fluency creates participation friction for intuitive conversational contributors.
+    status: inferred
+  - id: ASM-12
+    statement: Participation friction hides or disconnects valuable contributions.
+    status: provisional
+  - id: ASM-13
+    statement: Matching quality cannot exceed the maturity of the target model and review process.
+    status: inferred
+  - id: ASM-14
+    statement: If uptake is absent, research activity can be declared relevant without a goal-relevant effect.
+    status: inferred
+  - id: ASM-15
+    statement: Undefined scale boundaries encourage a group tree to be mistaken for a universal tree.
+    status: provisional
+  - id: ASM-16
+    statement: Undisposed proposals contribute to recurring discussion.
+    status: provisional
+  - id: ASM-17
+    statement: Hidden contributions cannot improve the shared model.
+    status: inferred
+  - id: ASM-18
+    statement: Research that does not improve the model leaves the same questions unresolved.
+    status: inferred
+  - id: ASM-19
+    statement: Conversational freedom requires keeping inquiry outside formal trees.
+    status: provisional
+  - id: ASM-20
+    statement: Cumulative coherence requires every contributor to work directly in tree form.
+    status: provisional
+  - id: ASM-21
+    statement: Natural conversation and formal tree revision cannot be connected by a mediated layer.
+    status: provisional
+  - id: ASM-22
+    statement: Local autonomy requires keeping group trees isolated.
+    status: provisional
+  - id: ASM-23
+    statement: Cross-group alignment requires one authoritative merged tree.
+    status: provisional
+  - id: ASM-24
+    statement: Agreement and disagreement cannot coexist in one federated representation.
+    status: provisional
+  - id: ASM-25
+    statement: A mediated delta proposal preserves low-friction participation while making potential model impact explicit.
+    status: provisional
+  - id: ASM-26
+    statement: Visible standing and dispositions make model revision legitimate enough for provisional use.
+    status: provisional
+  - id: ASM-27
+    statement: A stable change record preserves the reasoning needed for cumulative inquiry.
+    status: inferred
+  - id: ASM-28
+    statement: AI assistance reduces mapping cost without replacing contributor or reviewer judgment.
+    status: provisional
+  - id: ASM-29
+    statement: A versioned ledger helps accepted contributions alter shared vision rather than disappear.
+    status: provisional
+  - id: ASM-30
+    statement: Reviewing uptake and downstream use steers research toward consequential gaps.
+    status: provisional
+  - id: ASM-31
+    statement: Provenance-preserving grafts can create useful shared structure without forced consensus.
+    status: provisional
+
+views:
+  goal-tree:
+    title: What cumulative 2R research requires
+    purpose: Conditions for turning plural contributions into legitimate, action-guiding improvements of the shared model.
+    entities: [NC-1, NC-2, NC-3, NC-4, NC-5, NC-6, NC-7, CSF-1, CSF-2, CSF-3, CSF-4, G-1]
+    links: [L-001, L-002, L-003, L-004, L-005, L-006, L-007, L-008, L-009, L-010, L-011]
+  current-reality:
+    title: Why research conversation does not yet accumulate
+    purpose: The missing uptake, governance, representation, matching, and scale interfaces behind repeated or hidden contributions.
+    entities: [RC-1, RC-2, RC-3, RC-4, RC-5, UDE-1, UDE-2, UDE-3, UDE-4, UDE-5, UDE-6, UDE-7, UDE-8]
+    links: [L-012, L-013, L-014, L-015, L-016, L-017, L-018, L-019, L-020, L-021, L-022]
+  evaporating-cloud:
+    title: Free inquiry, cumulative coherence, and plural alignment
+    purpose: "Two linked conflicts: natural conversation versus tree formalism, and local autonomy versus a universal master tree."
+    entities: [OPT-1, OPT-2, NEED-1, NEED-2, CO-1, OPT-3, OPT-4, NEED-3, NEED-4, CO-2]
+    links: [L-023, L-024, L-025, L-026, L-027, L-028, L-029, L-030, L-031, L-032]
+  future-reality:
+    title: A governed contribution-to-model learning system
+    purpose: Expected effects and risks of mediated uptake, human-confirmed AI assistance, versioned model change, and federated grafting.
+    entities: [INJ-1, INJ-2, INJ-3, INJ-4, INJ-5, INJ-6, INJ-7, DE-1, DE-2, DE-3, DE-4, DE-5, DE-6, DE-7, NBR-1, NBR-2, NBR-3, NBR-4, G-1]
+    links: [L-033, L-034, L-035, L-036, L-037, L-038, L-039, L-040, L-041, L-042, L-043, L-044, L-045, L-046, L-047, L-048, L-049, L-050]
+  prerequisite-tree:
+    title: What must exist before automating or grafting
+    purpose: The dependency chain from charter and governance through a manual pilot, evaluated AI assistance, and one federated-tree experiment.
+    entities: [OBS-1, IO-1, OBS-2, IO-2, OBS-3, IO-3, OBS-4, IO-4, OBS-5, IO-5, OBS-6, IO-6, OBS-7, IO-7, INJ-1, INJ-2, INJ-5]
+    links: [L-056, L-057, L-058, L-059, L-060, L-061, L-062, L-063, L-064, L-065, L-066, L-067, L-068, L-069, L-070, L-071]
+  transition-tree:
+    title: Four evidence-producing transitions
+    purpose: Start with one manual uptake pilot, then formalize governance, evaluate AI assistance, and finally test pairwise grafting.
+    entities: [ACT-1, TR-1, IO-4, ACT-2, TR-2, IO-2, ACT-3, TR-3, IO-5, ACT-4, TR-4, IO-6]
+    links: [L-072, L-073, L-074, L-075, L-076, L-077, L-078, L-079]
+
+open_questions:
+  - Which Research Circle members and affected 2R constituencies have standing to propose, review, object, approve, or appeal model changes?
+  - What kinds of adopted deltas count as improvements rather than mere change?
+  - How should model quality, downstream use, and epistemic significance weight the throughput unit?
+  - Which current 2R tree version is canonical enough for a pilot, and who owns it?
+  - Can a mediated uptake loop preserve conversational flow without feeling extractive or bureaucratic?
+  - What evidence would show that uptake, rather than idea generation or attendance, is the actual constraint?
+  - What are the minimum semantics for a graft that preserves local identity, disagreement, provenance, and exit?
+
+contradictions:
+  - The early platform assumes one authoritative tree while the later vision rejects treating 2R's group tree as the universal top level.
+  - The organization-level throughput definition concerns durable cultural adoption, whereas the Research Circle's throughput concerns adopted improvements to the shared model.
+  - The prompt values unstructured conversation and tree-based accumulation, but no operational bridge has yet been demonstrated.
+  - The platform imagines automated matching even though the prompt says both the trees and matching quality are not mature enough for poignant synergy.
+
+coverage_gaps:
+  - No actual Research Circle recordings, transcripts, papers, agendas, attendance records, or accepted tree revisions were supplied.
+  - Referenced screenshots and the linked 2R Throughput Google Doc were not present in the repository.
+  - No governance charter, canonical tree version, contributor registry, standing rules, or decision log was supplied.
+  - No external group's tree was supplied for grafting analysis.
+  - The five pre-existing trees describe 2R proper, not the Research Circle; they were treated as prior model context.
+  - No real throughput periods exist, so throughput.yaml was not created.

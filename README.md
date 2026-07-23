@@ -10,6 +10,9 @@ Collaboration of Rufus Pollock with David Joseph to build tooling for structured
 **Core shared vision:** Patterns and tooling where you take a top-level claim, recursively decompose it into sub-claims, and build a directed graph (DAG) of claims + evidence. Enables "cathedral building" where discourse actually accumulates rather than being scattered across forum posts.
 
 <div class="demo-cta">
+  <a href="dashboard/index.html" class="btn-primary btn-primary-lg">
+    Open the Project LTP dashboard
+  </a>
   <a href="alignment/index.html" class="btn-primary btn-primary-lg">
     Try Goal Aligner
   </a>
@@ -40,14 +43,33 @@ Codex may also select the skill automatically for requests about LTP trees,
 project constraints, causal analysis, or plan/code reconciliation. If the skill
 does not appear immediately after checkout, restart Codex.
 
-## Local Project LTP dashboard
+## Project LTP dashboard
 
-Project LTP analyses can be explored in a local, read-only dashboard. It opens
-with the current constraint, next action, expected effect, and any defined
-throughput signals; the six LTP trees, evidence, assumptions, and filters are
-available on demand.
+Project LTP analyses are explored in a read-only dashboard that opens with the
+current constraint, next action, expected effect, and any defined throughput
+signals; the six LTP trees, evidence, assumptions, and filters are available on
+demand.
 
-For any project containing `ltp/ltp-model.yaml`, run:
+### Published multi-project dashboard
+
+The site publishes the dashboard at [`/dashboard/`](dashboard/index.html) with a
+project picker, so several analyses live in one place. Each project is a static
+model under `skills/project-ltp/dashboard/public/projects/<slug>/model.yaml`,
+listed in `public/projects/manifest.json`. To add a project, drop its
+`ltp-model.yaml` (and optional `throughput.yaml`) under a new slug, add a
+manifest entry, then build and publish:
+
+```bash
+sh skills/project-ltp/scripts/publish_dashboard.sh
+```
+
+This builds the dashboard and copies it to the repo-root `dashboard/` directory
+that the site serves.
+
+### Local single-project dashboard
+
+For any project containing `ltp/ltp-model.yaml`, run the local read-only server
+(it live-reloads as you edit the model):
 
 ```bash
 python skills/project-ltp/scripts/serve_dashboard.py --project /path/to/project --open

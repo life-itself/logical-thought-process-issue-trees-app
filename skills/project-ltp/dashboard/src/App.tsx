@@ -1,7 +1,8 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DetailsPanel } from "./DetailsPanel";
 import { Overview } from "./Overview";
 import { ProjectPicker } from "./ProjectPicker";
+import { TreeCanvas } from "./TreeCanvas";
 import { TreeList } from "./TreeList";
 import {
   indexModel,
@@ -23,9 +24,6 @@ import {
 
 type Screen = "overview" | TreeView;
 type TreeMode = "graph" | "list";
-const TreeCanvas = lazy(() =>
-  import("./TreeCanvas").then((module) => ({ default: module.TreeCanvas })),
-);
 const allStatuses: EntityStatus[] = ["observed", "confirmed", "inferred", "provisional", "disputed"];
 const allConfidences: Confidence[] = ["high", "medium", "low"];
 const noExpandedNodes = new Set<string>();
@@ -428,21 +426,19 @@ export default function App() {
               aria-label={`${activeLabel!.purpose} ${treeMode}`}
             >
               {treeMode === "graph" ? (
-                <Suspense fallback={<div className="canvas-empty"><strong>Arranging the tree…</strong></div>}>
-                  <TreeCanvas
-                    key={activeView}
-                    model={model}
-                    index={index}
-                    view={activeView!}
-                    statuses={statuses}
-                    confidences={confidences}
-                    expandedIds={expandedIds}
-                    collapsingIds={collapsingIds}
-                    selectedId={selectedId}
-                    onToggle={onToggleActiveNode}
-                    onSelect={setSelectedId}
-                  />
-                </Suspense>
+                <TreeCanvas
+                  key={activeView}
+                  model={model}
+                  index={index}
+                  view={activeView!}
+                  statuses={statuses}
+                  confidences={confidences}
+                  expandedIds={expandedIds}
+                  collapsingIds={collapsingIds}
+                  selectedId={selectedId}
+                  onToggle={onToggleActiveNode}
+                  onSelect={setSelectedId}
+                />
               ) : (
                 <TreeList
                   model={model}

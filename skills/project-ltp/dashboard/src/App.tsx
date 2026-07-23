@@ -357,7 +357,7 @@ export default function App() {
             index={index}
             throughput={throughput}
             onSelect={setSelectedId}
-            onExplore={() => chooseScreen("current-reality")}
+            onExplore={() => chooseScreen("goal-tree")}
           />
         ) : (
           <main className="tree-screen">

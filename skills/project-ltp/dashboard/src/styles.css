@@ -230,11 +230,11 @@ summary::-webkit-details-marker { display: none; }
 .tree-screen { height: calc(100vh - 122px); display: flex; flex-direction: column; padding: 26px clamp(18px, 4vw, 48px) 30px; }
 .tree-heading { min-height: 108px; display: flex; align-items: start; justify-content: space-between; gap: 30px; padding: 0 8px 22px; }
 .tree-heading > div:first-child { max-width: 850px; }
-.tree-heading h1 { font-size: clamp(34px, 4.4vw, 58px); }
+.tree-heading h1 { font-size: clamp(18px, 2.2vw, 30px); }
 .tree-heading p { max-width: 62em; margin: 8px 0 0; color: var(--muted); font-size: 13px; }
 .tree-tools { display: flex; align-items: center; gap: 10px; padding-top: 3px; }
 .has-details .tree-heading { flex-wrap: wrap; gap: 12px; }
-.has-details .tree-heading h1 { font-size: clamp(32px, 3.4vw, 46px); }
+.has-details .tree-heading h1 { font-size: clamp(17px, 1.7vw, 24px); }
 .has-details .tree-tools { width: 100%; justify-content: flex-end; }
 .tree-mode-switch { display: inline-flex; overflow: hidden; border: 1px solid var(--color-divider); border-radius: 999px; }
 .tree-mode-switch button { display: flex; align-items: center; gap: 7px; min-height: 36px; padding: 7px 12px; border: 0; background: transparent; font-size: 13px; cursor: pointer; }
@@ -426,7 +426,7 @@ summary::-webkit-details-marker { display: none; }
   .model-health { grid-template-columns: 1fr 1fr; }
   .tree-screen { height: calc(100vh - 112px); padding: 20px 12px 16px; }
   .tree-heading { min-height: 160px; gap: 12px; padding-inline: 4px; }
-  .tree-heading h1 { font-size: 34px; }
+  .tree-heading h1 { font-size: 18px; }
   .tree-heading p { max-width: 34ch; }
   .tree-tools { justify-content: space-between; }
   .filter-panel { width: 280px; }

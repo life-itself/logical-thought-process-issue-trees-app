@@ -5,7 +5,6 @@ import {
   Controls,
   Handle,
   MarkerType,
-  MiniMap,
   Position,
   ReactFlow,
   type Edge,
@@ -260,21 +259,6 @@ export function TreeCanvas({
     >
       <Background gap={28} size={1} color="var(--grid-dot)" />
       <Controls showInteractive={false} />
-      <MiniMap
-        pannable
-        zoomable
-        nodeColor={(node) => {
-          const entity = (node.data as FlowNodeData).entity;
-          // Mirror the node-fill status language from styles.css using the
-          // Organic tokens: sage for settled evidence, terracotta for disputed,
-          // muted neutral for provisional/inferred. No off-palette hexes.
-          return entity.status === "observed" || entity.status === "confirmed"
-            ? "var(--color-accent-2-600)"
-            : entity.status === "disputed"
-              ? "var(--color-accent)"
-              : "var(--color-neutral-500)";
-        }}
-      />
     </ReactFlow>
   );
 }

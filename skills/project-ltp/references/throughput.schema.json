@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/project-ltp/throughput.schema.json",
+  "title": "Project LTP throughput history",
+  "type": "object",
+  "required": ["definition", "periods"],
+  "properties": {
+    "definition": {
+      "type": "object",
+      "required": ["name", "unit", "period"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "unit": { "type": "string", "minLength": 1 },
+        "period": { "type": "string", "minLength": 1 },
+        "goal_entity": { "type": "string" },
+        "constraint_entity": { "type": "string" },
+        "source": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "periods": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date"],
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "throughput": { "type": "number", "minimum": 0 },
+          "completed": { "type": "number", "minimum": 0 },
+          "work_in_progress": { "type": "number", "minimum": 0 },
+          "blocked": { "type": "number", "minimum": 0 },
+          "median_cycle_time_days": { "type": "number", "minimum": 0 },
+          "constraint_queue": { "type": "number", "minimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -60,6 +60,8 @@ Before finalizing the analysis, verify:
 * Each Intermediate Objective enables an injection.
 * Each transition advances an Intermediate Objective.
 * The recommended next action lies on a traceable path to the goal.
+* Every link has a stable identifier.
+* Every entity and link named in `views` exists in the shared model.
 
 ---
 
@@ -80,6 +82,7 @@ ltp/
   08-next-action.md
   09-assumptions-and-questions.md
   ltp-model.yaml
+  throughput.yaml              # optional; only with real, defined metrics
 ```
 
 Each tree document should contain:

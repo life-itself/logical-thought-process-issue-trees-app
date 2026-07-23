@@ -30,7 +30,8 @@ Stream 4 (infra polish)  ── DROPPED this round
 
 - **1a. Tree-gen skill** — input claim/question → claim tree. Validate against the hand-authored remote-work tree.
 - **1b. Annotation-mapping skill** — source doc + tree → fragments mapped to nodes + relation label (supports / complicates / limits) + link back. Validate against the 3 gold annotations.
-- **1c. Interactive UI + data model** — only after 1a/1b look good. Evolve the demo from scripted → live: persist a tree, feed docs in, accumulate annotations.
+- **1c. Local Project LTP dashboard** — **implemented on the toy fixture**: a localhost-only, read-only viewer for the six LTP views, evidence, assumptions, the current constraint, next action, and optional throughput history.
+- **1d. Editable claim/evidence UI** — after the read-only model contract proves useful on a new case, evolve the scripted demo into a live app that persists a tree, accepts documents, and accumulates confirmed annotations.
 
 **Internal parallelization:** 1a → 1b is the natural order, but **1b can start immediately** against the gold tree. So 1a and 1b run in parallel; 1c waits on both.
 
@@ -45,12 +46,14 @@ Skills live in `skills/` (see `skills/README.md`).
 
 | Stream | Action | Blocker |
 |--------|--------|---------|
-| 1a | Implement tree-gen skill; score vs gold tree | none |
-| 1b | Implement annotation-mapping skill; score vs 3 gold annotations | none — start now |
+| 1a | Extend tree-gen beyond the verified gold fixture with one new claim | none |
+| 1b | Exercise annotation mapping on one new source document | none |
+| 1c | Run Project LTP on a new project and open its model in the local dashboard | none — toy dashboard is verified |
+| 1d | Decide the first editable workflow after observing 1c on a real model | evidence from 1c |
 | 2a | Gather Jun 6 transcript + old issue-tree diagrams | find the files |
 | 2b | Draft clean Mermaid 4-step diagram | none — start now |
 
 ## Verification
 
-- **Stream 1** — run each skill on the toy input; diff structured output against the gold data in `claim-tree-annotation.md`. "Good enough" = tree covers the same major sub-questions; annotation-mapping places each of the 3 fragments on the correct node with a sensible relation. Then eyeball on one *new* doc to check it generalises.
+- **Stream 1** — run each skill on the toy input; diff structured output against the gold data in `claim-tree-annotation.md`. "Good enough" = tree covers the same major sub-questions; annotation-mapping places each of the 3 fragments on the correct node with a sensible relation. For the dashboard, compile the bundled frontend, run the localhost boundary tests, load all model data from YAML, and browser-check overview, tree selection, progressive disclosures, and responsive layout. Then eyeball on one *new* doc/project to check the workflow generalises.
 - **Stream 2** — 2b: render Mermaid, confirm it reads cleanly. 2a: draft reviewed by Rufus, then shared with David for a "does this capture it" check.

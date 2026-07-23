@@ -26,5 +26,11 @@ Logical Thinking Process (LTP) / Issue Tree app — a tool to decompose a top-le
   ln -s ../../skills/annotation-mapping .claude/skills/annotation-mapping
   ln -s ../../skills/project-ltp .claude/skills/project-ltp
   ```
+- **Codex skills** are discovered under `.agents/skills/`. The repository tracks
+  `.agents/skills/project-ltp` as a symlink to the same canonical
+  `skills/project-ltp/` directory, so edits stay shared between Claude Code and
+  Codex. In the Codex app, invoke it explicitly with `$project-ltp` or let its
+  description trigger it automatically. Restart Codex if a newly added skill
+  does not appear in the Skills sidebar.
 - **Toy example first.** Validate any AI skill against the gold data in `claim-tree-annotation.md` before touching real applications (e.g. Second Renaissance).
 - Keep `MOTIVATION.md` (why + SCQH) and `PLAN.md` (plan of work) current; both are referenced from `README.md`.

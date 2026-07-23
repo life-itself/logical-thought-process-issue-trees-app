@@ -1,4 +1,4 @@
 interface:
   display_name: "Project LTP"
-  short_description: "Find project constraints with LTP causal analysis"
-  default_prompt: "Use $project-ltp to analyze this project, build an evidence-backed causal model, and recommend the single highest-leverage next action."
+  short_description: "Find constraints and explore six LTP views locally"
+  default_prompt: "Use $project-ltp to analyze this project, build a dashboard-ready evidence-backed causal model, and recommend the single highest-leverage next action."

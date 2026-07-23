@@ -2,3 +2,14 @@
 # Skills themselves are tracked under top-level skills/; .claude/skills/ just
 # symlinks them in so Claude Code can discover them. See AGENTS.md > Conventions.
 .claude/
+
+# Local dashboard build tooling (the compiled dashboard under dist/ is tracked).
+node_modules/
+*.tsbuildinfo
+__pycache__/
+*.py[cod]
+skills/project-ltp/dashboard/vite.config.js
+skills/project-ltp/dashboard/vite.config.d.ts
+
+# macOS metadata.
+.DS_Store

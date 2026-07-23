@@ -7,7 +7,8 @@ description: >
   whenever the user wants an evidence-backed Goal Tree, Current Reality Tree,
   Evaporating Cloud, Future Reality Tree, Prerequisite Tree, Transition Tree,
   system-constraint diagnosis, causal analysis, plan/code reconciliation, or
-  a recommendation for what to work on next.
+  a recommendation for what to work on next. Also use when the user wants to
+  explore those trees or project throughput in the bundled local dashboard.
 ---
 
 # Project LTP
@@ -26,10 +27,11 @@ shared model rather than as unrelated documents.
 3. Never present inferred business intent as fact.
 4. Express important causal links as:
    `If [cause], then [effect], because [assumption].`
-5. Reuse stable entity identifiers across all trees.
-6. Maintain the machine-readable model in `ltp-model.yaml`.
-7. Continue with a clearly marked provisional goal when evidence is incomplete.
-8. Never claim repository coverage that was not actually achieved.
+5. Reuse stable entity and link identifiers across all trees.
+6. Record tree membership under the model's `views` map.
+7. Maintain the machine-readable model in `ltp-model.yaml`.
+8. Continue with a clearly marked provisional goal when evidence is incomplete.
+9. Never claim repository coverage that was not actually achieved.
 
 Read `references/principles-and-model.md` before building or revising the
 causal model.
@@ -100,7 +102,8 @@ deprecations, and missing implementations.
 ### 4. Synthesize one causal model
 
 Create entities, evidence items, assumptions, links, open questions,
-contradictions, and coverage gaps in `ltp-model.yaml`.
+contradictions, coverage gaps, view membership, and the current constraint in
+`ltp-model.yaml`.
 
 ### 5. Render the trees
 
@@ -132,12 +135,29 @@ canonical deliverables below:
 - `09-assumptions-and-questions.md`
 - `ltp-model.yaml`
 
+Create `throughput.yaml` only when a defensible goal unit and real observations
+are available. Never invent throughput history to fill the dashboard.
+
 Use Mermaid diagrams when useful, but ensure every diagram also has a readable
 text representation.
 
 Read `references/validation-and-deliverables.md` for validation checks,
 incremental-update behavior, output requirements, and the final response
 format.
+
+## Local dashboard
+
+When the user asks for a visual or local interface, read
+`references/dashboard-and-throughput.md`, make the shared model dashboard-ready,
+then run:
+
+```bash
+python skills/project-ltp/scripts/serve_dashboard.py --project /path/to/project --open
+```
+
+Treat the dashboard as a read-only view of the YAML files, not as a second
+source of truth. Bind to loopback unless the user explicitly requests network
+access.
 
 ## Completion rules
 
@@ -150,3 +170,4 @@ Before finalizing:
 5. Report excluded, unreadable, generated, binary, or oversized files.
 6. Give one primary next action, not an unranked task list.
 7. State what evidence could overturn the recommendation.
+8. Validate stable link IDs and all entity/link references in `views`.

@@ -106,6 +106,12 @@ project:
   analysis_mode: forward
   provisional_goal: G-1
 
+analysis:
+  current_constraint: RC-1
+  recommended_next_action: ACT-1
+  expected_effect: DE-1
+  updated_at: ""
+
 entities:
   - id: G-1
     type: goal
@@ -123,7 +129,8 @@ entities:
     evidence: [EVD-2, EVD-3]
 
 links:
-  - from: RC-1
+  - id: L-1
+    from: RC-1
     to: UDE-1
     relation: causes
     logic: sufficient
@@ -137,11 +144,22 @@ evidence:
     observation: ""
     interpretation: ""
 
+views:
+  current-reality:
+    title: ""
+    purpose: ""
+    entities: [RC-1, UDE-1]
+    links: [L-1]
+
 open_questions: []
 contradictions: []
 coverage_gaps: []
 ```
 
-The exact serialization may vary, but the semantic information must be preserved.
+Use stable link IDs and explicit view membership so the same causal model can
+be rendered without duplicating entities. The exact serialization may vary,
+but the semantic information must be preserved. Read
+`dashboard-and-throughput.md` for the dashboard contract and optional
+throughput history.
 
 ---

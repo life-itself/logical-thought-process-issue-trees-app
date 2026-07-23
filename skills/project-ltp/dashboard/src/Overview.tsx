@@ -1,0 +1,156 @@
+import type { LtpEntity, LtpModel, ModelIndex, ThroughputData, ThroughputPeriod } from "./model";
+
+interface OverviewProps {
+  model: LtpModel;
+  index: ModelIndex;
+  throughput: ThroughputData | null;
+  onSelect: (entityId: string) => void;
+  onExplore: () => void;
+}
+
+function Sparkline({ values }: { values: number[] }) {
+  if (values.length < 2) return <div className="sparkline-empty" aria-hidden="true" />;
+  const width = 180;
+  const height = 48;
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = max - min || 1;
+  const points = values
+    .map((value, index) => {
+      const x = (index / (values.length - 1)) * width;
+      const y = height - 5 - ((value - min) / range) * (height - 10);
+      return `${x},${y}`;
+    })
+    .join(" ");
+  return (
+    <svg className="sparkline" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`Trend from ${values[0]} to ${values.at(-1)}`}>
+      <polyline points={points} fill="none" vectorEffect="non-scaling-stroke" />
+      <circle cx={width} cy={Number(points.split(" ").at(-1)?.split(",")[1])} r="3.5" />
+    </svg>
+  );
+}
+
+function metricValue(period: ThroughputPeriod, key: keyof ThroughputPeriod): string {
+  const value = period[key];
+  if (value === undefined) return "—";
+  if (key === "median_cycle_time_days") return `${value}d`;
+  return String(value);
+}
+
+export function Overview({ model, index, throughput, onSelect, onExplore }: OverviewProps) {
+  const constraint = model.analysis?.current_constraint
+    ? index.entities.get(model.analysis.current_constraint)
+    : undefined;
+  const action = model.analysis?.recommended_next_action
+    ? index.entities.get(model.analysis.recommended_next_action)
+    : undefined;
+  const effect = model.analysis?.expected_effect
+    ? index.entities.get(model.analysis.expected_effect)
+    : undefined;
+  const story: Array<{ label: string; entity?: LtpEntity; fallback: string }> = [
+    { label: "Current constraint", entity: constraint, fallback: "Not identified" },
+    { label: "Next move", entity: action, fallback: "Not selected" },
+    { label: "Expected shift", entity: effect, fallback: "Not modelled" },
+  ];
+  const latest = throughput?.periods.at(-1);
+  const metricCards: Array<{ key: keyof ThroughputPeriod; label: string }> = [
+    { key: "throughput", label: "Throughput" },
+    { key: "work_in_progress", label: "Work in progress" },
+    { key: "blocked", label: "Blocked" },
+    { key: "median_cycle_time_days", label: "Cycle time" },
+    { key: "constraint_queue", label: "Constraint queue" },
+  ];
+  const trends: Array<{ key: keyof ThroughputPeriod; label: string }> = [
+    { key: "throughput", label: "Goal throughput" },
+    { key: "work_in_progress", label: "Work in progress" },
+    { key: "median_cycle_time_days", label: "Cycle time" },
+  ];
+
+  return (
+    <main className="overview">
+      <section className="overview-hero">
+        <div>
+          <span className="eyebrow">The system at a glance</span>
+          <h1>{model.project.name}</h1>
+          <p>Follow the limiting condition to the next action and the effect it is meant to create.</p>
+        </div>
+        <button type="button" className="primary-button" onClick={onExplore}>Explore the logic <span>→</span></button>
+      </section>
+
+      <section className="logic-story" aria-label="Constraint to action story">
+        {story.map((step, indexValue) => (
+          <div className="story-step-wrap" key={step.label}>
+            <button
+              type="button"
+              className={`story-step story-step--${indexValue + 1}`}
+              disabled={!step.entity}
+              onClick={() => step.entity && onSelect(step.entity.id)}
+            >
+              <span>{step.label}</span>
+              <strong>{step.entity?.statement ?? step.fallback}</strong>
+              {step.entity && <small>{step.entity.id} · {step.entity.confidence} confidence</small>}
+            </button>
+            {indexValue < story.length - 1 && <span className="story-arrow" aria-hidden="true">→</span>}
+          </div>
+        ))}
+      </section>
+
+      <section className="throughput-section">
+        <header className="section-heading">
+          <div>
+            <span className="eyebrow">What counts</span>
+            <h2>{throughput?.definition.name ?? "Throughput is not defined yet"}</h2>
+            <p>
+              {throughput
+                ? `${throughput.definition.unit} per ${throughput.definition.period}`
+                : "Add ltp/throughput.yaml only when the project has a defensible goal unit."}
+            </p>
+          </div>
+          {latest && <time dateTime={latest.date}>Latest · {latest.date}</time>}
+        </header>
+
+        {latest ? (
+          <>
+            <div className="metric-grid">
+              {metricCards.map(({ key, label }) => (
+                <article className={key === "throughput" ? "metric-card metric-card--primary" : "metric-card"} key={key}>
+                  <span>{label}</span>
+                  <strong>{metricValue(latest, key)}</strong>
+                </article>
+              ))}
+            </div>
+            <details className="trend-disclosure">
+              <summary>See trends <span>Three signals over time</span></summary>
+              <div className="trend-grid">
+                {trends.map(({ key, label }) => {
+                  const values = throughput!.periods
+                    .map((period) => period[key])
+                    .filter((value): value is number => typeof value === "number");
+                  return (
+                    <article className="trend-card" key={key}>
+                      <span>{label}</span>
+                      <Sparkline values={values} />
+                      <small>{values[0] ?? "—"} → {values.at(-1) ?? "—"}</small>
+                    </article>
+                  );
+                })}
+              </div>
+            </details>
+          </>
+        ) : (
+          <div className="empty-panel">
+            <span aria-hidden="true">○</span>
+            <div><strong>No invented metrics.</strong><p>The tree still works; measurement appears when real data does.</p></div>
+          </div>
+        )}
+      </section>
+
+      <section className="model-health">
+        <article><strong>{model.entities.length}</strong><span>conditions in the shared model</span></article>
+        <article><strong>{model.evidence?.length ?? 0}</strong><span>evidence items attached</span></article>
+        <article><strong>{model.open_questions?.length ?? 0}</strong><span>open questions</span></article>
+        <article><strong>{model.contradictions?.length ?? 0}</strong><span>contradictions visible</span></article>
+      </section>
+    </main>
+  );
+}
